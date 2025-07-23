@@ -18,6 +18,9 @@ const ProjectCard = ({ project, index, inView }) => {
     });
   };
 
+  // Default gradient for mobile (centered)
+  const mobileGradient = `radial-gradient(350px circle at 50% 50%, #9E7AFF, #38bdf8, #FF5C5C, #FE8BBB, transparent 100%)`;
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -28,12 +31,17 @@ const ProjectCard = ({ project, index, inView }) => {
         ref={containerRef}
         className={clsx(
           "relative rounded-lg overflow-hidden p-[3px] transition-all duration-300",
-          isHovered ? "shadow-lg" : "shadow-md"
+          "sm:hover:shadow-lg shadow-md"
         )}
         style={{
           background: isHovered
             ? `radial-gradient(350px circle at ${mousePos.x}px ${mousePos.y}px, #9E7AFF, #38bdf8, #FF5C5C, #FE8BBB, transparent 80%)`
-            : 'rgba(255, 255, 255, 0.05)'
+            : `sm:rgba(255, 255, 255, 0.05) ${mobileGradient}`,
+          // Apply mobile gradient by default, desktop style only on sm+
+          background: window.innerWidth < 640 ? mobileGradient : 
+            (isHovered 
+              ? `radial-gradient(350px circle at ${mousePos.x}px ${mousePos.y}px, #9E7AFF, #38bdf8, #FF5C5C, #FE8BBB, transparent 80%)`
+              : 'rgba(255, 255, 255, 0.05)')
         }}
         onMouseMove={handleMouseMove}
         onMouseEnter={() => setIsHovered(true)}

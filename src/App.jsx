@@ -1,36 +1,37 @@
-import { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
-import Navbar from './components/Navbar';
-import Home from './pages/Home';
-import About from './pages/About';
-import Skills from './pages/Skills';
-import Projects from './pages/Projects';
-import Contact from './pages/Contact';
+import { useState, useEffect } from "react";
+import { motion } from "framer-motion";
+import Navbar from "./components/Navbar";
+import Home from "./pages/Home";
+import About from "./pages/About";
+import Skills from "./pages/Skills";
+import Projects from "./pages/Projects";
+import Certificates from "./pages/Certificates";
+import Contact from "./pages/Contact";
 
 function App() {
   const [darkMode, setDarkMode] = useState(false);
 
   useEffect(() => {
-    if (localStorage.getItem('darkMode') === 'true') {
+    if (localStorage.getItem("darkMode") === "true") {
       setDarkMode(true);
-      document.documentElement.classList.add('dark');
+      document.documentElement.classList.add("dark");
     }
   }, []);
 
   const toggleDarkMode = () => {
     const newMode = !darkMode;
     setDarkMode(newMode);
-    localStorage.setItem('darkMode', newMode);
-    document.documentElement.classList.toggle('dark');
+    localStorage.setItem("darkMode", newMode);
+    document.documentElement.classList.toggle("dark");
   };
 
   // Section-specific background colors
   const sectionColors = {
-    home: darkMode ? 'bg-gray-900' : 'bg-indigo-50',
-    about: darkMode ? 'bg-gray-800' : 'bg-indigo-100',
-    skills: darkMode ? 'bg-gray-900' : 'bg-emerald-50',
-    projects: darkMode ? 'bg-gray-800' : 'bg-indigo-100',
-    contact: darkMode ? 'bg-gray-900' : 'bg-blue-50',
+    home: darkMode ? "bg-gray-900" : "bg-indigo-50",
+    about: darkMode ? "bg-gray-800" : "bg-indigo-100",
+    skills: darkMode ? "bg-gray-900" : "bg-emerald-50",
+    projects: darkMode ? "bg-gray-800" : "bg-indigo-100",
+    contact: darkMode ? "bg-gray-900" : "bg-blue-50",
   };
 
   // Animation variants
@@ -41,19 +42,23 @@ function App() {
       y: 0,
       transition: {
         duration: 0.6,
-        ease: "easeOut"
-      }
-    }
+        ease: "easeOut",
+      },
+    },
   };
 
   return (
-    <div className={`min-h-screen transition-colors duration-300 ${darkMode ? 'dark' : ''}`}>
+    <div
+      className={`min-h-screen transition-colors duration-300 ${
+        darkMode ? "dark" : ""
+      }`}
+    >
       <Navbar darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
-      
+
       <main>
         {/* Home Section */}
-        <section 
-          id="home" 
+        <section
+          id="home"
           className={`${sectionColors.home} transition-colors duration-500`}
         >
           <Home />
@@ -98,6 +103,22 @@ function App() {
         >
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <Projects />
+          </div>
+        </motion.section>
+        
+        {/* Certificates section */}
+        <motion.section
+          id="certificates"
+          className={`${
+            darkMode ? "bg-gray-900" : "bg-emerald-50"
+          } transition-colors duration-500 py-20`}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-100px" }}
+          variants={sectionVariants}
+        >
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <Certificates />
           </div>
         </motion.section>
 

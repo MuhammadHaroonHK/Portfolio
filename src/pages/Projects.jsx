@@ -6,6 +6,7 @@ import green from '../assets/images/green.PNG';
 import netflix from '../assets/images/netflix.PNG';
 import quiz from '../assets/images/quiz.PNG';
 import gpa from '../assets/images/gpa.PNG';
+import portfo from '../assets/images/portfo.PNG';
 
 const Projects = () => {
   const [ref, inView] = useInView({
@@ -27,6 +28,13 @@ const Projects = () => {
       technologies: ["ReactJS", "Tailwind CSS", "Redux Toolkit", "Axios"],
       image: green,
       link: "https://shopping-seven-gilt.vercel.app/",
+    },
+    {
+      title: "Portfolio Website",
+      description: "My personal portfolio website displays my skills, projects, achievements, and contact details professionally.",
+      technologies: ["ReactJS", "Tailwind CSS", "Framer Motion", "React Icons"],
+      image: portfo,
+      link: "https://portfolio-two-dun-97.vercel.app/",
     },
     {
       title: "Netflix Clone Website",

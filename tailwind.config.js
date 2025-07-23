@@ -38,8 +38,31 @@ export default {
           contact: {
             light: '#EFF6FF', // Blue-50
             dark: '#172554', // Blue-950
+          },
+          certificates: {
+            light: '#F0FDF4', // Green-50
+            dark: '#052E16', // Green-950
           }
         }
+      },
+      animation: {
+        'infinite-scroll': 'infinite-scroll 20s linear infinite',
+        'fade-in': 'fadeIn 1s ease-in-out',
+        'slide-up': 'slideUp 0.8s ease-out',
+      },
+      keyframes: {
+        'infinite-scroll': {
+          from: { transform: 'translateX(0)' },
+          to: { transform: 'translateX(-100%)' },
+        },
+        fadeIn: {
+          '0%': { opacity: '0' },
+          '100%': { opacity: '1' },
+        },
+        slideUp: {
+          '0%': { transform: 'translateY(20px)', opacity: '0' },
+          '100%': { transform: 'translateY(0)', opacity: '1' },
+        },
       },
     },
   },

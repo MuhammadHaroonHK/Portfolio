@@ -7,6 +7,7 @@ import netflix from '../assets/images/netflix.PNG';
 import quiz from '../assets/images/quiz.PNG';
 import gpa from '../assets/images/gpa.PNG';
 import portfo from '../assets/images/portfo.PNG';
+import adeverywhere from '../assets/images/AdEverywhere.PNG';
 
 const Projects = () => {
   const [ref, inView] = useInView({
@@ -23,11 +24,11 @@ const Projects = () => {
       link: "https://e-commerce-web-3ftx.vercel.app/",
     },
     {
-      title: "Green House Website",
-      description: "A website for a greenhouse business showcasing their products and services with a modern UI.",
-      technologies: ["ReactJS", "Tailwind CSS", "Redux Toolkit", "Axios"],
-      image: green,
-      link: "https://shopping-seven-gilt.vercel.app/",
+      title: "AdEverywhere",
+      description: "The plateform aims to connect Advertiser's with Advertising Asset Owner's in this advance Tech world.",
+      technologies: ["ReactJS", "Redux Toolkit", "Tailwind CSS", "Node.js", "Express.js", "MongoDB", "JWT"],
+      image: adeverywhere,
+      link: "https://ad-everywhere.vercel.app/",
     },
     {
       title: "Portfolio Website",
@@ -44,12 +45,19 @@ const Projects = () => {
       link: "https://netflix-clone-sigma-gray-65.vercel.app/",
     },
     {
-      title: "Quiz App",
-      description: "A simple quiz app that tests users with multiple-choice questions and shows their score at the end.",
-      technologies: ["ReactJS", "CSS"],
-      image: quiz,
-      link: "https://quiz-app-ten-psi-40.vercel.app/",
+      title: "Green House Website",
+      description: "A website for a greenhouse business showcasing their products and services with a modern UI.",
+      technologies: ["ReactJS", "Tailwind CSS", "Redux Toolkit"],
+      image: green,
+      link: "https://shopping-seven-gilt.vercel.app/",
     },
+    // {
+    //   title: "Quiz App",
+    //   description: "A simple quiz app that tests users with multiple-choice questions and shows their score at the end.",
+    //   technologies: ["ReactJS", "CSS"],
+    //   image: quiz,
+    //   link: "https://quiz-app-ten-psi-40.vercel.app/",
+    // },
     {
       title: "GPA Calculator",
       description: "A GPA calculator app that calculates SGPA and CGPA based on user input grades and credits.",

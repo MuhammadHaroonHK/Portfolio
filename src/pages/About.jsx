@@ -41,13 +41,13 @@ const About = () => {
             With a CGPA of 3.42/4.00, I combine strong academic knowledge with practical skills to build modern web applications. I'm particularly interested in creating responsive, user-friendly interfaces with robust backend functionality.
           </p>
           <div className="flex flex-wrap gap-3 md:gap-4">
-            <div className="bg-gray-100 dark:bg-white cursor-default px-3 py-1 md:px-4 md:py-2 rounded-lg text-sm md:text-base">
+            <div className="bg-gray-100 dark:bg-gray-500 cursor-default px-3 py-1 md:px-4 md:py-2 rounded-lg text-sm md:text-base dark:text-gray-100">
               <span className="font-medium">Email:</span> haroonhk059@gmail.com
             </div>
-            <div className="bg-gray-100 dark:bg-white cursor-default px-3 py-1 md:px-4 md:py-2 rounded-lg text-sm md:text-base">
+            <div className="bg-gray-100 dark:bg-gray-500 cursor-default px-3 py-1 md:px-4 md:py-2 rounded-lg text-sm md:text-base dark:text-gray-100">
               <span className="font-medium">Phone:</span> +92 312 9386965
             </div>
-            <div className="bg-gray-100 dark:bg-white cursor-default px-3 py-1 md:px-4 md:py-2 rounded-lg text-sm md:text-base">
+            <div className="bg-gray-100 dark:bg-gray-500 cursor-default px-3 py-1 md:px-4 md:py-2 rounded-lg text-sm md:text-base dark:text-gray-100">
               <span className="font-medium">Location:</span> Peshawar, Pakistan
             </div>
           </div>

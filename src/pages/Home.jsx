@@ -155,7 +155,7 @@ const Home = () => {
             className="flex flex-wrap justify-center lg:justify-start gap-4"
           >
             <motion.a
-              href="https://drive.google.com/file/d/14-XhnqN_EbFmDz4Ol1jpBO3XSKjJK5Cz/view?usp=drive_link" target='blank'
+              href="https://drive.google.com/file/d/1TYbcagcK5tRyMevdxeekCu7TCUONDswJ/view?usp=drive_link" target='blank'
               className="px-8 py-3 bg-primary-light dark:bg-primary-dark text-white rounded-lg hover:bg-opacity-90 transition-colors duration-300"
               variants={buttonVariants}
               whileHover={{ scale: 1.05 }}

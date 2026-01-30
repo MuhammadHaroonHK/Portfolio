@@ -35,7 +35,7 @@ const Projects = () => {
       description: "My personal portfolio website displays my skills, projects, achievements, and contact details professionally.",
       technologies: ["ReactJS", "Tailwind CSS", "Framer Motion", "React Icons"],
       image: portfo,
-      link: "https://portfolio-two-dun-97.vercel.app/",
+      link: "https://haroon-hk.vercel.app/",
     },
     {
       title: "Netflix Clone Website",

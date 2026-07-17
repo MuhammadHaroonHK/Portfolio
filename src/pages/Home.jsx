@@ -128,7 +128,7 @@ const Home = () => {
             variants={textVariants}
             className="text-base sm:text-lg mb-8 text-gray-600 dark:text-gray-400 max-w-xl leading-relaxed mx-auto lg:mx-0"
           >
-            Software Engineer specializing in building secure, scalable, and high-performance web applications using the <strong>MERN Stack</strong>.
+            Software Engineer specializing in MERN Stack development, focused on building secure, scalable, and high-performance web applications with modern technologies.
           </motion.p>
 
           {/* CTAs */}
@@ -164,7 +164,7 @@ const Home = () => {
             className="flex items-center justify-center lg:justify-start gap-6 border-t border-gray-100 dark:border-gray-800 pt-6 max-w-xs mx-auto lg:mx-0"
           >
             <a 
-              href="https://github.com/your-username" 
+              href="https://github.com/MuhammadHaroonHK" 
               target="_blank" 
               rel="noopener noreferrer"
               aria-label="GitHub Profile"
@@ -173,7 +173,7 @@ const Home = () => {
               <FaGithub />
             </a>
             <a 
-              href="https://linkedin.com/in/your-username" 
+              href="https://linkedin.com/in/muhammad-haroon-842ba2298" 
               target="_blank" 
               rel="noopener noreferrer"
               aria-label="LinkedIn Profile"
@@ -182,7 +182,7 @@ const Home = () => {
               <FaLinkedin />
             </a>
             <a 
-              href="mailto:your.email@gmail.com"
+              href="mailto:haroonhk059@gmail.com"
               aria-label="Send Email"
               className="text-xl text-gray-500 hover:text-red-500 dark:text-gray-400 dark:hover:text-red-400 transition-colors duration-300"
             >

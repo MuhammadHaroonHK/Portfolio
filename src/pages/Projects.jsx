@@ -9,6 +9,7 @@ import gpa from "../assets/images/gpa.webp";
 import portfo from "../assets/images/portfo.webp";
 import adeverywhere from "../assets/images/AdEverywhere.webp";
 import beautiLink from "../assets/images/beautilink.webp";
+import boxSurpise from "../assets/images/boxsurprise.webp";
 
 const Projects = () => {
   const [ref, inView] = useInView({
@@ -66,12 +67,27 @@ const Projects = () => {
       link: "https://beauti-link.vercel.app/",
     },
     {
-      title: "Netflix Clone Website",
+      title: "Box Surprise",
       description:
-        "A Netflix-inspired UI with movie listings and trailers, demonstrating API integration and responsive design.",
-      technologies: ["ReactJS", "CSS", "Axios"],
-      image: netflix,
-      link: "https://netflix-clone-sigma-gray-65.vercel.app/",
+        "Box Surprise is an e-commerce platform offering surprise gift boxes with a secure referral and reward system.",
+      technologies: [
+        "ReactJS",
+        "TypeScript",
+        "Redux Toolkit",
+        "Tailwind CSS",
+        "Node.js",
+        "Express.js",
+      ],
+      image: boxSurpise,
+      link: "https://www.boxsurprise.pk/",
+    },
+    {
+      title: "Khyber School & College",
+      description:
+        "A modern school website showcasing academic programs, campus information, admissions, and contact details.",
+      technologies: ["Next.js", "TypeScript", "Tailwind CSS"],
+      image: khyberSchool,
+      link: "YOUR_PROJECT_URL",
     },
     {
       title: "Green House Website",
@@ -88,14 +104,14 @@ const Projects = () => {
     //   image: quiz,
     //   link: "https://quiz-app-ten-psi-40.vercel.app/",
     // },
-    {
-      title: "GPA Calculator",
-      description:
-        "A GPA calculator app that calculates SGPA and CGPA based on user input grades and credits.",
-      technologies: ["ReactJS", "Tailwind CSS"],
-      image: gpa,
-      link: "https://quiz-app-ten-psi-40.vercel.app/",
-    },
+    // {
+    //   title: "GPA Calculator",
+    //   description:
+    //     "A GPA calculator app that calculates SGPA and CGPA based on user input grades and credits.",
+    //   technologies: ["ReactJS", "Tailwind CSS"],
+    //   image: gpa,
+    //   link: "https://quiz-app-ten-psi-40.vercel.app/",
+    // },
   ];
 
   // Container animation

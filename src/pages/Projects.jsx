@@ -1,13 +1,13 @@
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import ProjectCard from '../components/ProjectCard';
-import rabit from '../assets/images/rabit.PNG';
-import green from '../assets/images/green.PNG';
-import netflix from '../assets/images/netflix.PNG';
-import quiz from '../assets/images/quiz.PNG';
-import gpa from '../assets/images/gpa.PNG';
-import portfo from '../assets/images/portfo.PNG';
-import adeverywhere from '../assets/images/AdEverywhere.PNG';
+import rabit from '../assets/images/rabit.webp';
+import green from '../assets/images/green.webp';
+import netflix from '../assets/images/netflix.webp';
+import quiz from '../assets/images/quiz.webp';
+import gpa from '../assets/images/gpa.webp';
+import portfo from '../assets/images/portfo.webp';
+import adeverywhere from '../assets/images/AdEverywhere.webp';
 
 const Projects = () => {
   const [ref, inView] = useInView({

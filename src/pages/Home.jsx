@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { useEffect, useState } from 'react';
-import profile from '../assets/images/profile.png';
+import profile from '../assets/images/profile.webp';
 import { 
   FaExternalLinkAlt, 
   FaArrowRight, 

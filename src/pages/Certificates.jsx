@@ -1,12 +1,12 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import react from '../assets/images/React.png';
-import front from '../assets/images/Front-End.png';
-import database from '../assets/images/database.PNG';
-import javascript_1 from '../assets/images/javascript_1.PNG';
-import javascript from '../assets/images/javascript.PNG';
-import node from '../assets/images/node.PNG';
-import network from '../assets/images/network.PNG';
+import react from '../assets/images/React.webp';
+import front from '../assets/images/Front-End.webp';
+import database from '../assets/images/database.webp';
+import javascript_1 from '../assets/images/javascript_1.webp';
+import javascript from '../assets/images/javascript.webp';
+import node from '../assets/images/node.webp';
+import network from '../assets/images/network.webp';
 
 const certificates = [
   {

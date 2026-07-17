@@ -32,13 +32,13 @@ const About = () => {
         <div className="w-full lg:w-2/3">
           <h2 className="text-3xl font-bold mb-6 text-primary-light dark:text-primary-dark">About Me</h2>
           <p className="text-lg mb-4 text-gray-700 dark:text-gray-300">
-            I'm a passionate MERN Stack Developer currently pursuing my BS in Software Engineering at City University of Science and Information Technology, Peshawar.
+            I'm a Software Engineer and MERN Stack Developer passionate about building modern, scalable, and user-friendly web applications. I recently completed my BS in Software Engineering from City University of Science and Information Technology, Peshawar, and enjoy turning ideas into real-world digital solutions.
           </p>
           <p className="text-lg mb-4 text-gray-700 dark:text-gray-300">
-            Currently, I'm interning at Logic Gigs Pvt Ltd, where I'm undergoing training in the MERN stack under the guidance of senior developers. I'm actively learning and practicing React.js, Node.js, Express.js, and MongoDB to prepare for real-world projects.
+            During my MERN Stack internship at Logic Gigs Pvt Ltd, I gained hands-on experience developing full-stack applications using React, Node.js, Express.js, and MongoDB. Since then, I have continued expanding my expertise by working with Next.js, TypeScript, PostgreSQL, Tailwind CSS, Git, and modern development workflows.
           </p>
           <p className="text-lg mb-6 text-gray-700 dark:text-gray-300">
-            With a CGPA of 3.42/4.00, I combine strong academic knowledge with practical skills to build modern web applications. I'm particularly interested in creating responsive, user-friendly interfaces with robust backend functionality.
+            I enjoy solving real-world problems through clean, maintainable code and continuously improving my technical skills. Currently, I'm seeking an opportunity as a Software Engineer or MERN Stack Developer where I can contribute, learn from experienced teams, and grow as a full-stack developer.
           </p>
           <div className="flex flex-wrap gap-3 md:gap-4">
             <div className="bg-gray-100 dark:bg-gray-500 cursor-default px-3 py-1 md:px-4 md:py-2 rounded-lg text-sm md:text-base dark:text-gray-100">

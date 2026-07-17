@@ -14,7 +14,11 @@ const Home = () => {
   const [displayText, setDisplayText] = useState('');
   const [isDeleting, setIsDeleting] = useState(false);
 
-  const roles = ['MERN Stack Developer', 'Software Engineer', 'Web Developer'];
+  const roles = [
+  'Full-Stack MERN Developer',
+  'Software Engineer',
+  'Turning Ideas into Web Applications'
+];
   const typingSpeed = 1500;
   const deletingSpeed = 500;
   const delayBetweenRoles = 10000;
@@ -147,7 +151,7 @@ const Home = () => {
             variants={textVariants}
             className="text-lg sm:text-xl mb-10 text-gray-600 dark:text-gray-400 max-w-2xl"
           >
-            I build exceptional digital experiences with modern web technologies including React, Node.js, Express, and MongoDB.
+            Software Engineer specializing in MERN Stack development, focused on building secure, scalable, and high-performance web applications with modern technologies.
           </motion.p>
 
           <motion.div

@@ -10,6 +10,7 @@ import portfo from "../assets/images/portfo.webp";
 import adeverywhere from "../assets/images/AdEverywhere.webp";
 import beautiLink from "../assets/images/beautilink.webp";
 import boxSurpise from "../assets/images/boxsurprise.webp";
+import khyberSchool from "../assets/images/khyber.webp"
 
 const Projects = () => {
   const [ref, inView] = useInView({
@@ -85,9 +86,9 @@ const Projects = () => {
       title: "Khyber School & College",
       description:
         "A modern school website showcasing academic programs, campus information, admissions, and contact details.",
-      technologies: ["Next.js", "TypeScript", "Tailwind CSS"],
+      technologies: ["ReactJs", "Framer Motion", "Tailwind CSS"],
       image: khyberSchool,
-      link: "YOUR_PROJECT_URL",
+      link: "https://khyber-123.vercel.app/",
     },
     {
       title: "Green House Website",

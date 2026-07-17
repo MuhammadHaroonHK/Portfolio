@@ -3,10 +3,6 @@ import { useInView } from "react-intersection-observer";
 import ProjectCard from "../components/ProjectCard";
 import rabit from "../assets/images/rabit.webp";
 import green from "../assets/images/green.webp";
-import netflix from "../assets/images/netflix.webp";
-import quiz from "../assets/images/quiz.webp";
-import gpa from "../assets/images/gpa.webp";
-import portfo from "../assets/images/portfo.webp";
 import adeverywhere from "../assets/images/AdEverywhere.webp";
 import beautiLink from "../assets/images/beautilink.webp";
 import boxSurpise from "../assets/images/boxsurprise.webp";
@@ -98,21 +94,6 @@ const Projects = () => {
       image: green,
       link: "https://shopping-seven-gilt.vercel.app/",
     },
-    // {
-    //   title: "Quiz App",
-    //   description: "A simple quiz app that tests users with multiple-choice questions and shows their score at the end.",
-    //   technologies: ["ReactJS", "CSS"],
-    //   image: quiz,
-    //   link: "https://quiz-app-ten-psi-40.vercel.app/",
-    // },
-    // {
-    //   title: "GPA Calculator",
-    //   description:
-    //     "A GPA calculator app that calculates SGPA and CGPA based on user input grades and credits.",
-    //   technologies: ["ReactJS", "Tailwind CSS"],
-    //   image: gpa,
-    //   link: "https://quiz-app-ten-psi-40.vercel.app/",
-    // },
   ];
 
   // Container animation

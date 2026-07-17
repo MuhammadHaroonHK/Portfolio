@@ -1,13 +1,14 @@
-import { motion } from 'framer-motion';
-import { useInView } from 'react-intersection-observer';
-import ProjectCard from '../components/ProjectCard';
-import rabit from '../assets/images/rabit.webp';
-import green from '../assets/images/green.webp';
-import netflix from '../assets/images/netflix.webp';
-import quiz from '../assets/images/quiz.webp';
-import gpa from '../assets/images/gpa.webp';
-import portfo from '../assets/images/portfo.webp';
-import adeverywhere from '../assets/images/AdEverywhere.webp';
+import { motion } from "framer-motion";
+import { useInView } from "react-intersection-observer";
+import ProjectCard from "../components/ProjectCard";
+import rabit from "../assets/images/rabit.webp";
+import green from "../assets/images/green.webp";
+import netflix from "../assets/images/netflix.webp";
+import quiz from "../assets/images/quiz.webp";
+import gpa from "../assets/images/gpa.webp";
+import portfo from "../assets/images/portfo.webp";
+import adeverywhere from "../assets/images/AdEverywhere.webp";
+import beautiLink from "../assets/images/beautilink.webp";
 
 const Projects = () => {
   const [ref, inView] = useInView({
@@ -18,35 +19,64 @@ const Projects = () => {
   const projects = [
     {
       title: "E-Commerce Website",
-      description: "A full-stack e-commerce platform with product listings, cart functionality, user authentication, and payment processing.",
-      technologies: ["ReactJS", "Redux Toolkit", "Tailwind CSS", "Node.js", "Express.js", "MongoDB", "JWT"],
+      description:
+        "A full-stack e-commerce platform with product listings, cart functionality, user authentication, and payment processing.",
+      technologies: [
+        "ReactJS",
+        "Redux Toolkit",
+        "Tailwind CSS",
+        "Node.js",
+        "Express.js",
+        "MongoDB",
+        "JWT",
+      ],
       image: rabit,
       link: "https://e-commerce-web-3ftx.vercel.app/",
     },
     {
       title: "AdEverywhere",
-      description: "The plateform aims to connect Advertiser's with Advertising Asset Owner's in this advance Tech world.",
-      technologies: ["ReactJS", "Redux Toolkit", "Tailwind CSS", "Node.js", "Express.js", "MongoDB", "JWT"],
+      description:
+        "The plateform aims to connect Advertiser's with Advertising Asset Owner's in this advance Tech world.",
+      technologies: [
+        "ReactJS",
+        "Redux Toolkit",
+        "Tailwind CSS",
+        "Node.js",
+        "Express.js",
+        "MongoDB",
+        "JWT",
+      ],
       image: adeverywhere,
       link: "https://ad-everywhere.vercel.app/",
     },
     {
-      title: "Portfolio Website",
-      description: "My personal portfolio website displays my skills, projects, achievements, and contact details professionally.",
-      technologies: ["ReactJS", "Tailwind CSS", "Framer Motion", "React Icons"],
-      image: portfo,
-      link: "https://haroon-hk.vercel.app/",
+      title: "BeautiLink",
+      description:
+        "BeautiLink connects home-based makeup artists with local clients through a modern beauty service platform.",
+      technologies: [
+        "ReactJS",
+        "Redux Toolkit",
+        "Tailwind CSS",
+        "Node.js",
+        "Express.js",
+        "MongoDB",
+        "JWT",
+      ],
+      image: beautiLink,
+      link: "https://beauti-link.vercel.app/",
     },
     {
       title: "Netflix Clone Website",
-      description: "A Netflix-inspired UI with movie listings and trailers, demonstrating API integration and responsive design.",
+      description:
+        "A Netflix-inspired UI with movie listings and trailers, demonstrating API integration and responsive design.",
       technologies: ["ReactJS", "CSS", "Axios"],
       image: netflix,
       link: "https://netflix-clone-sigma-gray-65.vercel.app/",
     },
     {
       title: "Green House Website",
-      description: "A website for a greenhouse business showcasing their products and services with a modern UI.",
+      description:
+        "A website for a greenhouse business showcasing their products and services with a modern UI.",
       technologies: ["ReactJS", "Tailwind CSS", "Redux Toolkit"],
       image: green,
       link: "https://shopping-seven-gilt.vercel.app/",
@@ -60,7 +90,8 @@ const Projects = () => {
     // },
     {
       title: "GPA Calculator",
-      description: "A GPA calculator app that calculates SGPA and CGPA based on user input grades and credits.",
+      description:
+        "A GPA calculator app that calculates SGPA and CGPA based on user input grades and credits.",
       technologies: ["ReactJS", "Tailwind CSS"],
       image: gpa,
       link: "https://quiz-app-ten-psi-40.vercel.app/",
@@ -74,9 +105,9 @@ const Projects = () => {
       opacity: 1,
       transition: {
         staggerChildren: 0.2,
-        delayChildren: 0.3
-      }
-    }
+        delayChildren: 0.3,
+      },
+    },
   };
 
   return (
@@ -87,16 +118,19 @@ const Projects = () => {
         animate={inView ? "visible" : "hidden"}
         variants={containerVariants}
       >
-        <motion.h2 
+        <motion.h2
           className="text-3xl font-bold mb-12 text-center text-primary-light dark:text-primary-dark"
           initial={{ opacity: 0, y: -20 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
         >
-          My <span className="text-secondary-light dark:text-secondary-dark">Projects</span>
+          My{" "}
+          <span className="text-secondary-light dark:text-secondary-dark">
+            Projects
+          </span>
         </motion.h2>
-        
-        <motion.div 
+
+        <motion.div
           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
           variants={containerVariants}
         >

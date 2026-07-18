@@ -7,8 +7,21 @@ import javascript_1 from '../assets/images/javascript_1.webp';
 import javascript from '../assets/images/javascript.webp';
 import node from '../assets/images/node.webp';
 import network from '../assets/images/network.webp';
+import skillathon from '../assets/images/skillathon.webp'
+import synergy from '../assets/images/synergy.webp'
 
 const certificates = [
+  
+  {
+    id: 8,
+    title: "Skillaton Participation Certification",
+    image: skillathon,
+  },
+  {
+    id: 9,
+    title: "Synergy Fest 2026",
+    image: synergy,
+  },
   {
     id: 1,
     title: "React Certification",

@@ -2,10 +2,54 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    @apply antialiased overflow-x-hidden text-slate-800 dark:text-slate-100 bg-slate-50 dark:bg-[#0b0f19] transition-colors duration-500;
+  }
+}
+
+/* Custom WebGL / Glassmorphism Utilities */
+.glass-panel {
+  background: rgba(255, 255, 255, 0.65);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+}
+
+.dark .glass-panel {
+  background: rgba(15, 23, 42, 0.65);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* 3D Background Mesh Effect */
+.bg-mesh-pattern {
+  background-image: radial-gradient(rgba(99, 102, 241, 0.15) 1px, transparent 1px),
+                    radial-gradient(rgba(168, 85, 247, 0.15) 1px, transparent 1px);
+  background-size: 40px 40px;
+  background-position: 0 0, 20px 20px;
+}
+
+.dark .bg-mesh-pattern {
+  background-image: radial-gradient(rgba(99, 102, 241, 0.25) 1px, transparent 1px),
+                    radial-gradient(rgba(168, 85, 247, 0.2) 1px, transparent 1px);
+}
+
+/* Hide scrollbars for slick canvas interactions */
 .no-scrollbar::-webkit-scrollbar {
   display: none;
 }
 .no-scrollbar {
   -ms-overflow-style: none;
   scrollbar-width: none;
+}
+
+.laptop-screen {
+  pointer-events: none;
+  user-select: none;
 }

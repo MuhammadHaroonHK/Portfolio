@@ -1,14 +1,17 @@
-import { motion } from 'framer-motion';
-import { useInView } from 'react-intersection-observer';
-import { useEffect, useState } from 'react';
-import profile from '../assets/images/profile.webp';
-import { 
-  FaExternalLinkAlt, 
-  FaArrowRight, 
-  FaLinkedin, 
-  FaGithub, 
-  FaEnvelope 
-} from 'react-icons/fa';
+import { motion } from "framer-motion";
+import { useInView } from "react-intersection-observer";
+import { useEffect, useState } from "react";
+import profile from "../assets/images/profile.webp";
+import Interactive3DWorkspace from "../components/Interactive3DWorkspace";
+import ParticleBackground from "../components/ParticleBackground";
+import {
+  FaExternalLinkAlt,
+  FaArrowRight,
+  FaLinkedin,
+  FaGithub,
+  FaEnvelope,
+  FaCode,
+} from "react-icons/fa";
 
 const Home = () => {
   const [ref, inView] = useInView({
@@ -16,20 +19,20 @@ const Home = () => {
     threshold: 0.1,
   });
 
-  // Typing animation state
+  // Dynamic Typing State
   const [currentRole, setCurrentRole] = useState(0);
-  const [displayText, setDisplayText] = useState('');
+  const [displayText, setDisplayText] = useState("");
   const [isDeleting, setIsDeleting] = useState(false);
 
   const roles = [
-    'Full-Stack MERN Developer',
-    'Software Engineer',
-    'Turning Ideas into Web Applications'
+    "Full-Stack MERN Developer",
+    "Software Engineer",
+    "Building Scalable Web Apps",
   ];
 
-  const typingSpeed = 75; 
+  const typingSpeed = 75;
   const deletingSpeed = 35;
-  const delayBetweenRoles = 2000; 
+  const delayBetweenRoles = 2000;
 
   useEffect(() => {
     let timer;
@@ -39,7 +42,7 @@ const Home = () => {
 
     if (isDeleting) {
       timer = setTimeout(() => {
-        setDisplayText(prev => prev.substring(0, prev.length - 1));
+        setDisplayText((prev) => prev.substring(0, prev.length - 1));
       }, deletingSpeed);
     } else {
       timer = setTimeout(() => {
@@ -50,7 +53,7 @@ const Home = () => {
     if (!isDeleting && displayText === currentRoleText) {
       clearTimeout(timer);
       timer = setTimeout(() => setIsDeleting(true), delayBetweenRoles);
-    } else if (isDeleting && displayText === '') {
+    } else if (isDeleting && displayText === "") {
       setIsDeleting(false);
       setCurrentRole((prev) => (prev + 1) % roles.length);
     }
@@ -58,164 +61,143 @@ const Home = () => {
     return () => clearTimeout(timer);
   }, [inView, displayText, currentRole, isDeleting]);
 
-  // Animation variants
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
-      transition: { staggerChildren: 0.15, delayChildren: 0.1 },
+      transition: { staggerChildren: 0.1, delayChildren: 0.05 },
     },
   };
 
-  const imageVariants = {
-    hidden: { scale: 0.85, opacity: 0 },
-    visible: {
-      scale: 1,
-      opacity: 1,
-      transition: { type: "spring", stiffness: 80, damping: 15 },
-    },
-  };
-
-  const textVariants = {
-    hidden: { y: 25, opacity: 0 },
+  const itemVariants = {
+    hidden: { y: 20, opacity: 0 },
     visible: {
       y: 0,
       opacity: 1,
-      transition: { type: "spring", stiffness: 100, damping: 20 },
+      transition: { duration: 0.4, ease: "easeOut" },
     },
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 py-12 lg:py-0 bg-white dark:bg-gray-900 transition-colors duration-300">
+    <div className="min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 pt-28 pb-16 bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 relative overflow-hidden transition-colors duration-300">
+      {/* Interactive Dot & Mesh Canvas Background */}
+      <ParticleBackground />
+
       <motion.div
         ref={ref}
-        className="flex flex-col-reverse lg:flex-row items-center gap-12 lg:gap-16 max-w-6xl w-full"
+        className="max-w-7xl w-full grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center z-10"
         variants={containerVariants}
         initial="hidden"
         animate={inView ? "visible" : "hidden"}
       >
-        {/* Left Section (Content & Socials) */}
-        <div className="text-center lg:text-left flex-1 w-full">
-          <motion.p 
-            variants={textVariants}
-            className="text-xs sm:text-sm font-semibold tracking-widest uppercase text-primary-light dark:text-primary-dark mb-3"
-          >
-            Available for Opportunities
-          </motion.p>
-
-          <motion.h1
-            variants={textVariants}
-            className="text-4xl sm:text-5xl md:text-6xl font-extrabold mb-4 tracking-tight text-gray-900 dark:text-white"
-          >
-            Hi, I'm <span className="text-secondary-light dark:text-secondary-dark">Muhammad Haroon</span>
-          </motion.h1>
-
-          {/* Typing Container */}
-          <motion.div variants={textVariants} className="mb-6 h-14 flex items-center justify-center lg:justify-start">
-            <span className="px-4 py-2 bg-gray-50 dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700 shadow-sm text-primary-light dark:text-primary-dark font-medium rounded-full text-sm sm:text-base inline-flex items-center">
-              {displayText}
-              <motion.span
-                animate={{ opacity: [0, 1, 0] }}
-                transition={{ duration: 0.8, repeat: Infinity }}
-                className="ml-1 font-bold text-secondary-light dark:text-secondary-dark"
-              >
-                |
-              </motion.span>
+        {/* Left Section (Content & Action Buttons) */}
+        <div className="lg:col-span-7 text-center lg:text-left">
+          <motion.div variants={itemVariants} className="inline-block mb-4">
+            <span className="px-3.5 py-1.5 rounded-full text-xs font-semibold tracking-wide bg-white/90 dark:bg-slate-900/90 text-slate-800 dark:text-slate-200 border border-slate-200 dark:border-slate-800 flex items-center justify-center lg:justify-start gap-2 shadow-sm">
+              <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+              Available for Opportunities
             </span>
           </motion.div>
 
-          <motion.p
-            variants={textVariants}
-            className="text-base sm:text-lg mb-8 text-gray-600 dark:text-gray-400 max-w-xl leading-relaxed mx-auto lg:mx-0"
+          <motion.h1
+            variants={itemVariants}
+            className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-slate-900 dark:text-white leading-[1.15] mb-4"
           >
-            Software Engineer specializing in MERN Stack development, focused on building secure, scalable, and high-performance web applications with modern technologies.
-          </motion.p>
+            Hi, I'm <br className="hidden sm:inline" />
+            <span className="text-indigo-600 dark:text-indigo-400">
+              Muhammad Haroon
+            </span>
+          </motion.h1>
 
-          {/* CTAs */}
           <motion.div
-            variants={textVariants}
-            className="flex flex-col sm:flex-row justify-center lg:justify-start gap-4 mb-8"
+            variants={itemVariants}
+            className="mb-6 h-10 flex items-center justify-center lg:justify-start"
           >
-            <motion.a
-              href="https://drive.google.com/file/d/1TYbcagcK5tRyMevdxeekCu7TCUONDswJ/view?usp=drive_link" 
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center justify-center px-6 py-3 bg-primary-light dark:bg-primary-dark text-white font-medium rounded-xl shadow-sm hover:bg-opacity-90 transition-all duration-300"
-              whileHover={{ scale: 1.02 }}
-              whileTap={{ scale: 0.98 }}
-            >
-              Download CV <FaExternalLinkAlt className="ml-2 text-xs" />
-            </motion.a>
-            
-            <motion.a
-              href="#contact"
-              className="inline-flex items-center justify-center px-6 py-3 border border-gray-300 dark:border-gray-700 text-gray-700 dark:text-gray-300 font-medium rounded-xl hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors duration-300 group"
-              whileHover={{ scale: 1.02 }}
-              whileTap={{ scale: 0.98 }}
-            >
-              Let's Talk 
-              <FaArrowRight className="ml-2 text-xs group-hover:translate-x-1 transition-transform duration-200" />
-            </motion.a>
+            <div className="px-3.5 py-1.5 rounded-lg bg-white/90 dark:bg-slate-900/90 border border-slate-200 dark:border-slate-800 text-slate-800 dark:text-slate-200 font-mono text-sm sm:text-base flex items-center gap-2 shadow-sm">
+              <FaCode className="text-indigo-600 dark:text-indigo-400" />
+              <span>{displayText}</span>
+              <motion.span
+                animate={{ opacity: [0, 1, 0] }}
+                transition={{ duration: 0.8, repeat: Infinity }}
+                className="font-bold text-indigo-600 dark:text-indigo-400"
+              >
+                |
+              </motion.span>
+            </div>
           </motion.div>
 
-          {/* Social Links */}
-          <motion.div 
-            variants={textVariants}
-            className="flex items-center justify-center lg:justify-start gap-6 border-t border-gray-100 dark:border-gray-800 pt-6 max-w-xs mx-auto lg:mx-0"
+          <motion.p
+            variants={itemVariants}
+            className="text-base sm:text-lg text-slate-600 dark:text-slate-300 max-w-2xl leading-relaxed mx-auto lg:mx-0 mb-8"
           >
-            <a 
-              href="https://github.com/MuhammadHaroonHK" 
-              target="_blank" 
+            Software Engineer specializing in MERN Stack development. I build
+            high-performance, secure, and responsive web applications focused on
+            clean architecture and human-centered user experiences.
+          </motion.p>
+
+          <motion.div
+            variants={itemVariants}
+            className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 mb-10"
+          >
+            <a
+              href="https://drive.google.com/file/d/1TYbcagcK5tRyMevdxeekCu7TCUONDswJ/view?usp=drive_link"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-full sm:w-auto px-6 py-3 bg-indigo-600 hover:bg-indigo-700 dark:bg-indigo-500 dark:hover:bg-indigo-600 text-white font-semibold rounded-xl text-sm flex items-center justify-center gap-2 transition-all duration-200 shadow-md shadow-indigo-500/20"
+            >
+              Download CV <FaExternalLinkAlt className="text-xs" />
+            </a>
+
+            <a
+              href="#contact"
+              className="w-full sm:w-auto px-6 py-3 bg-white hover:bg-slate-100 dark:bg-slate-900 dark:hover:bg-slate-800 text-slate-900 dark:text-slate-100 font-semibold rounded-xl text-sm border border-slate-200 dark:border-slate-800 flex items-center justify-center gap-2 transition-all duration-200 group shadow-sm"
+            >
+              Let's Talk
+              <FaArrowRight className="text-xs group-hover:translate-x-1 transition-transform duration-200" />
+            </a>
+          </motion.div>
+
+          <motion.div
+            variants={itemVariants}
+            className="flex items-center justify-center lg:justify-start gap-4 border-t border-slate-200 dark:border-slate-800/80 pt-6"
+          >
+            <span className="text-xs uppercase font-semibold tracking-wider text-slate-400">
+              Connect:
+            </span>
+            <a
+              href="https://github.com/MuhammadHaroonHK"
+              target="_blank"
               rel="noopener noreferrer"
               aria-label="GitHub Profile"
-              className="text-xl text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white transition-colors duration-300"
+              className="p-2.5 rounded-lg bg-white/90 dark:bg-slate-900/90 border border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-300 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors duration-200 shadow-sm"
             >
-              <FaGithub />
+              <FaGithub className="text-base" />
             </a>
-            <a 
-              href="https://linkedin.com/in/muhammad-haroon-842ba2298" 
-              target="_blank" 
+            <a
+              href="https://linkedin.com/in/muhammad-haroon-842ba2298"
+              target="_blank"
               rel="noopener noreferrer"
               aria-label="LinkedIn Profile"
-              className="text-xl text-gray-500 hover:text-blue-600 dark:text-gray-400 dark:hover:text-blue-400 transition-colors duration-300"
+              className="p-2.5 rounded-lg bg-white/90 dark:bg-slate-900/90 border border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-300 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors duration-200 shadow-sm"
             >
-              <FaLinkedin />
+              <FaLinkedin className="text-base" />
             </a>
-            <a 
+            <a
               href="mailto:haroonhk059@gmail.com"
               aria-label="Send Email"
-              className="text-xl text-gray-500 hover:text-red-500 dark:text-gray-400 dark:hover:text-red-400 transition-colors duration-300"
+              className="p-2.5 rounded-lg bg-white/90 dark:bg-slate-900/90 border border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-300 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors duration-200 shadow-sm"
             >
-              <FaEnvelope />
+              <FaEnvelope className="text-base" />
             </a>
           </motion.div>
         </div>
 
-        {/* Right Section (Profile Image with Gradient Ring) */}
-        <motion.div
-          variants={imageVariants}
-          className="relative w-56 h-56 sm:w-64 sm:h-64 md:w-80 md:h-80 lg:w-[350px] lg:h-[350px] flex items-center justify-center shrink-0"
-        >
-          {/* Subtle spinning gradient background ring (Only around the image as requested) */}
-          <motion.div
-            className="absolute inset-0 bg-gradient-to-tr from-primary-light to-secondary-light dark:from-primary-dark dark:to-secondary-dark rounded-full opacity-80"
-            animate={{ rotate: 360 }}
-            transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
-          />
-          
-          {/* Floating inner profile image container */}
-          <motion.div
-            className="relative w-[95%] h-[95%] rounded-full overflow-hidden border-4 border-white dark:border-gray-900 shadow-xl bg-gray-50 dark:bg-gray-800"
-            animate={{ y: [-5, 5, -5] }}
-            transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-          >
-            <img
-              src={profile}
-              alt="Muhammad Haroon"
-              className="w-full h-full object-cover transform scale-105 hover:scale-110 transition-transform duration-500"
-            />
-          </motion.div>
-        </motion.div>
+        {/* Right Section - 3D Laptop (Boundaries Removed) */}
+        <div className="lg:col-span-5 relative flex items-center justify-center overflow-visible w-full">
+          <div className="w-full h-[400px] sm:h-[480px] lg:h-[520px] xl:h-[580px] relative overflow-visible">
+            <Interactive3DWorkspace />
+          </div>
+        </div>
       </motion.div>
     </div>
   );

@@ -79,23 +79,29 @@ const Home = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 pt-28 pb-16 bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 relative overflow-hidden transition-colors duration-300">
+    <div className="min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 pt-20 sm:pt-28 pb-12 sm:pb-16 bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 relative overflow-hidden transition-colors duration-300">
       {/* Interactive Dot & Mesh Canvas Background */}
       <ParticleBackground />
 
       <motion.div
         ref={ref}
-        className="max-w-7xl w-full grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center z-10"
+        className="max-w-7xl w-full grid grid-cols-1 lg:grid-cols-12 gap-2 sm:gap-4 lg:gap-8 items-center z-10"
         variants={containerVariants}
         initial="hidden"
         animate={inView ? "visible" : "hidden"}
       >
-        {/* Left Section (Content & Action Buttons) */}
-        <div className="lg:col-span-7 text-center lg:text-left">
+        {/* 3D Laptop Section - Reduced wrapper height & added negative margin to pull bottom text up */}
+        <div className="order-first lg:order-last lg:col-span-5 relative flex items-center justify-center overflow-visible w-full -mb-10 sm:-mb-14 lg:mb-0">
+          <div className="w-full h-[220px] sm:h-[300px] md:h-[360px] lg:h-[520px] xl:h-[580px] relative overflow-visible">
+            <Interactive3DWorkspace />
+          </div>
+        </div>
 
+        {/* Content & Action Buttons Section */}
+        <div className="order-last lg:order-first lg:col-span-7 text-center lg:text-left">
           <motion.h1
             variants={itemVariants}
-            className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-slate-900 dark:text-white leading-[1.15] mb-4"
+            className="text-3xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-slate-900 dark:text-white leading-[1.15] mb-4"
           >
             Hi, I'm <br className="hidden sm:inline" />
             <span className="text-indigo-600 dark:text-indigo-400">
@@ -105,7 +111,7 @@ const Home = () => {
 
           <motion.div
             variants={itemVariants}
-            className="mb-6 h-10 flex items-center justify-center lg:justify-start"
+            className="mb-5 sm:mb-6 h-10 flex items-center justify-center lg:justify-start"
           >
             <div className="px-3.5 py-1.5 rounded-lg bg-white/90 dark:bg-slate-900/90 border border-slate-200 dark:border-slate-800 text-slate-800 dark:text-slate-200 font-mono text-sm sm:text-base flex items-center gap-2 shadow-sm">
               <FaCode className="text-indigo-600 dark:text-indigo-400" />
@@ -122,7 +128,7 @@ const Home = () => {
 
           <motion.p
             variants={itemVariants}
-            className="text-base sm:text-lg text-slate-600 dark:text-slate-300 max-w-2xl leading-relaxed mx-auto lg:mx-0 mb-8"
+            className="text-sm sm:text-lg text-slate-600 dark:text-slate-300 max-w-2xl leading-relaxed mx-auto lg:mx-0 mb-6 sm:mb-8"
           >
             Software Engineer specializing in MERN Stack development. I build
             high-performance, secure, and responsive web applications focused on
@@ -131,7 +137,7 @@ const Home = () => {
 
           <motion.div
             variants={itemVariants}
-            className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 mb-10"
+            className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-3 sm:gap-4 mb-8 sm:mb-10"
           >
             <a
               href="https://drive.google.com/file/d/1TYbcagcK5tRyMevdxeekCu7TCUONDswJ/view?usp=drive_link"
@@ -153,7 +159,7 @@ const Home = () => {
 
           <motion.div
             variants={itemVariants}
-            className="flex items-center justify-center lg:justify-start gap-4 border-t border-slate-200 dark:border-slate-800/80 pt-6"
+            className="flex items-center justify-center lg:justify-start gap-4 border-t border-slate-200 dark:border-slate-800/80 pt-5 sm:pt-6"
           >
             <span className="text-xs uppercase font-semibold tracking-wider text-slate-400">
               Connect:
@@ -184,13 +190,6 @@ const Home = () => {
               <FaEnvelope className="text-base" />
             </a>
           </motion.div>
-        </div>
-
-        {/* Right Section - 3D Laptop (Boundaries Removed) */}
-        <div className="lg:col-span-5 relative flex items-center justify-center overflow-visible w-full">
-          <div className="w-full h-[400px] sm:h-[480px] lg:h-[520px] xl:h-[580px] relative overflow-visible">
-            <Interactive3DWorkspace />
-          </div>
         </div>
       </motion.div>
     </div>

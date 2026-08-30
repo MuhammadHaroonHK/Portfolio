@@ -92,12 +92,6 @@ const Home = () => {
       >
         {/* Left Section (Content & Action Buttons) */}
         <div className="lg:col-span-7 text-center lg:text-left">
-          <motion.div variants={itemVariants} className="inline-block mb-4">
-            <span className="px-3.5 py-1.5 rounded-full text-xs font-semibold tracking-wide bg-white/90 dark:bg-slate-900/90 text-slate-800 dark:text-slate-200 border border-slate-200 dark:border-slate-800 flex items-center justify-center lg:justify-start gap-2 shadow-sm">
-              <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-              Available for Opportunities
-            </span>
-          </motion.div>
 
           <motion.h1
             variants={itemVariants}

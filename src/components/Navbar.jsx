@@ -29,8 +29,8 @@ const Navbar = ({ darkMode, toggleDarkMode }) => {
       <nav
         className={`max-w-7xl mx-auto rounded-2xl transition-all duration-300 ${
           scrolled
-            ? "glass-panel shadow-lg shadow-indigo-500/5 py-3"
-            : "bg-transparent py-4"
+            ? "bg-white/90 dark:bg-slate-900/90 backdrop-blur-md shadow-lg shadow-indigo-500/5 py-3"
+            : "bg-white/70 dark:bg-slate-900/70 backdrop-blur-sm py-4"
         }`}
       >
         <div className="px-4 sm:px-6 flex items-center justify-between">

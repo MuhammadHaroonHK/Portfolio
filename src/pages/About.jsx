@@ -21,7 +21,7 @@ import {
 } from "react-icons/fa";
 
 /* ============================================================
-   MAIN ABOUT COMPONENT — REDESIGNED
+   MAIN ABOUT COMPONENT — REDESIGNED WITH ENHANCED BACKGROUND
    ============================================================ */
 
 const About = () => {
@@ -84,24 +84,28 @@ const About = () => {
   };
 
   return (
-    <section className="py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+    <section className="relative py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto overflow-hidden rounded-3xl bg-slate-50/80 dark:bg-slate-950/70 border border-slate-200/80 dark:border-slate-800/80 backdrop-blur-xl shadow-xl my-12">
+      {/* Decorative background visual accents */}
+      <div className="absolute -top-32 -left-32 w-96 h-96 bg-indigo-500/10 dark:bg-indigo-600/15 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute -bottom-32 -right-32 w-96 h-96 bg-blue-500/10 dark:bg-purple-600/15 rounded-full blur-3xl pointer-events-none" />
+
       <motion.div
         ref={ref}
         variants={containerVariants}
         initial="hidden"
         animate={inView ? "visible" : "hidden"}
-        className="space-y-12"
+        className="relative z-10 space-y-12"
       >
         {/* =============================================
-                   SECTION HEADER
+                    SECTION HEADER
                 ============================================= */}
-        <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-4 border-b border-slate-200 dark:border-slate-800 pb-6">
+        <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-4 border-b border-slate-200/80 dark:border-slate-800/80 pb-6">
           <div>
             <motion.div
               variants={itemVariants}
-              className="inline-flex items-center gap-2 text-xs font-mono text-indigo-500 dark:text-indigo-400 mb-2"
+              className="inline-flex items-center gap-2 text-xs font-mono text-indigo-600 dark:text-indigo-400 mb-2 px-2.5 py-1 rounded-full bg-indigo-50 dark:bg-indigo-950/50 border border-indigo-200 dark:border-indigo-800/50"
             >
-              <span className="w-1.5 h-1.5 rounded-full bg-indigo-500" />
+              <span className="w-1.5 h-1.5 rounded-full bg-indigo-500 animate-pulse" />
               ABOUT / PROFILE
             </motion.div>
             <motion.h2
@@ -128,7 +132,7 @@ const About = () => {
               <span className="block text-lg font-bold text-indigo-600 dark:text-indigo-400">
                 2+
               </span>
-              <span className="text-[10px] uppercase tracking-wider text-slate-500">
+              <span className="text-[10px] uppercase tracking-wider text-slate-500 dark:text-slate-400">
                 Years Code
               </span>
             </div>
@@ -137,7 +141,7 @@ const About = () => {
               <span className="block text-lg font-bold text-indigo-600 dark:text-indigo-400">
                 MERN
               </span>
-              <span className="text-[10px] uppercase tracking-wider text-slate-500">
+              <span className="text-[10px] uppercase tracking-wider text-slate-500 dark:text-slate-400">
                 Core Stack
               </span>
             </div>
@@ -146,7 +150,7 @@ const About = () => {
               <span className="block text-lg font-bold text-indigo-600 dark:text-indigo-400">
                 BS SE
               </span>
-              <span className="text-[10px] uppercase tracking-wider text-slate-500">
+              <span className="text-[10px] uppercase tracking-wider text-slate-500 dark:text-slate-400">
                 Degree
               </span>
             </div>
@@ -154,7 +158,7 @@ const About = () => {
         </div>
 
         {/* =============================================
-                   MAIN GRID: Profile + Tabs
+                    MAIN GRID: Profile + Tabs
                 ============================================= */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
           {/* LEFT COLUMN: Profile Image + Canvas */}
@@ -163,7 +167,7 @@ const About = () => {
             className="lg:col-span-5 space-y-5"
           >
             {/* Profile Image Card */}
-            <div className="relative rounded-2xl overflow-hidden bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-slate-800">
+            <div className="relative rounded-2xl overflow-hidden bg-white/60 dark:bg-slate-900/60 border border-slate-200/80 dark:border-slate-800/80 shadow-md">
               <div className="aspect-[4/3] w-full relative">
                 <img
                   src={aboutImg}
@@ -191,7 +195,7 @@ const About = () => {
             </div>
 
             {/* Quick contact row */}
-            <div className="flex flex-wrap items-center gap-4 text-xs text-slate-600 dark:text-slate-400 bg-slate-50 dark:bg-slate-900/50 rounded-xl px-4 py-3 border border-slate-200 dark:border-slate-800">
+            <div className="flex flex-wrap items-center gap-4 text-xs text-slate-600 dark:text-slate-400 bg-white/70 dark:bg-slate-900/60 backdrop-blur-md rounded-xl px-4 py-3 border border-slate-200/80 dark:border-slate-800/80 shadow-sm">
               <div className="flex items-center gap-2">
                 <FaEnvelope className="text-indigo-500" />
                 <span className="truncate">haroonhk059@gmail.com</span>
@@ -215,7 +219,7 @@ const About = () => {
             className="lg:col-span-7 space-y-5"
           >
             {/* Tab Buttons */}
-            <div className="flex gap-1 p-1 rounded-xl bg-slate-100 dark:bg-slate-900/80 border border-slate-200 dark:border-slate-800 overflow-x-auto no-scrollbar">
+            <div className="flex gap-1 p-1 rounded-xl bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border border-slate-200/80 dark:border-slate-800/80 shadow-sm overflow-x-auto no-scrollbar">
               {tabs.map((tab) => {
                 const Icon = tab.icon;
                 const isActive = activeTab === tab.id;
@@ -225,14 +229,14 @@ const About = () => {
                     onClick={() => setActiveTab(tab.id)}
                     className={`flex items-center gap-2 px-4 py-2.5 rounded-lg text-xs font-medium transition-all duration-200 whitespace-nowrap ${
                       isActive
-                        ? "bg-white dark:bg-indigo-600 text-indigo-600 dark:text-white shadow-md shadow-indigo-500/10"
-                        : "text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-200/50 dark:hover:bg-slate-800/50"
+                        ? "bg-indigo-600 text-white shadow-md shadow-indigo-500/20"
+                        : "text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800/60"
                     }`}
                   >
                     <Icon
                       className={
                         isActive
-                          ? "text-indigo-600 dark:text-white"
+                          ? "text-white"
                           : "text-slate-400"
                       }
                     />
@@ -243,7 +247,7 @@ const About = () => {
             </div>
 
             {/* Tab Panels */}
-            <div className="bg-white dark:bg-slate-900/60 rounded-2xl border border-slate-200 dark:border-slate-800 p-6 sm:p-8 min-h-[340px]">
+            <div className="bg-white/70 dark:bg-slate-900/60 backdrop-blur-md rounded-2xl border border-slate-200/80 dark:border-slate-800/80 p-6 sm:p-8 min-h-[340px] shadow-sm">
               <AnimatePresence mode="wait">
                 {/* ——— OVERVIEW ——— */}
                 {activeTab === "overview" && (
@@ -261,7 +265,7 @@ const About = () => {
                         Software Engineer
                       </strong>{" "}
                       with a Bachelor's in Software Engineering from{" "}
-                      <span className="text-slate-900 dark:text-white">
+                      <span className="text-slate-900 dark:text-white font-medium">
                         City University, Peshawar
                       </span>
                       . I build production-grade web applications with a focus
@@ -270,7 +274,7 @@ const About = () => {
                     </p>
                     <p>
                       My core stack is{" "}
-                      <span className="font-mono text-xs px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-indigo-500">
+                      <span className="font-mono text-xs px-2 py-0.5 rounded bg-indigo-50 dark:bg-indigo-950/60 border border-indigo-200/60 dark:border-indigo-800/40 text-indigo-600 dark:text-indigo-400">
                         MERN
                       </span>{" "}
                       — MongoDB, Express, React, Node.js — supplemented with
@@ -364,7 +368,7 @@ const About = () => {
                       {Object.entries(techStack).map(([category, items]) => (
                         <div
                           key={category}
-                          className="rounded-xl bg-slate-50 dark:bg-slate-900/40 border border-slate-200 dark:border-slate-800 p-4"
+                          className="rounded-xl bg-slate-50/80 dark:bg-slate-950/40 border border-slate-200/80 dark:border-slate-800/80 p-4"
                         >
                           <h5 className="text-[10px] font-mono uppercase tracking-wider text-indigo-500 dark:text-indigo-400 mb-3">
                             {category}
@@ -375,7 +379,7 @@ const About = () => {
                               return (
                                 <span
                                   key={tech.name}
-                                  className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-xs text-slate-700 dark:text-slate-300"
+                                  className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-white dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700/70 text-xs text-slate-700 dark:text-slate-300 shadow-sm"
                                 >
                                   <Icon className="text-indigo-500 text-[10px]" />
                                   {tech.name}

@@ -247,7 +247,7 @@ function App() {
             {/* About */}
             <motion.section
               id="about"
-              className="py-24 relative overflow-hidden"
+              className="py-2 relative overflow-hidden"
               initial="hidden"
               whileInView="visible"
               viewport={{
@@ -265,7 +265,7 @@ function App() {
             <motion.section
               id="skills"
               className="
-                py-24
+                py-2
                 relative
                 overflow-hidden
                 bg-slate-100/50
@@ -288,7 +288,7 @@ function App() {
             {/* Projects */}
             <motion.section
               id="projects"
-              className="py-24 relative overflow-hidden"
+              className="py-2 relative overflow-hidden"
               initial="hidden"
               whileInView="visible"
               viewport={{
@@ -306,7 +306,7 @@ function App() {
             <motion.section
               id="certificates"
               className="
-                py-24
+                py-2
                 relative
                 overflow-hidden
                 bg-slate-100/50
@@ -329,7 +329,7 @@ function App() {
             {/* Contact */}
             <motion.section
               id="contact"
-              className="py-24 relative overflow-hidden"
+              className="py-2 relative overflow-hidden"
               initial="hidden"
               whileInView="visible"
               viewport={{

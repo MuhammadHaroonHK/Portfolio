@@ -53,3 +53,58 @@
   pointer-events: none;
   user-select: none;
 }
+
+/* =========================================================
+   ABOUT SECTION — ENGINEERING BLUEPRINT
+   ========================================================= */
+
+.about-blueprint {
+  position: relative;
+  isolation: isolate;
+}
+
+.about-blueprint::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: -1;
+  background:
+    radial-gradient(
+      circle at 15% 20%,
+      rgba(99, 102, 241, 0.07),
+      transparent 28%
+    ),
+    radial-gradient(
+      circle at 85% 75%,
+      rgba(168, 85, 247, 0.06),
+      transparent 30%
+    );
+}
+
+.dark .about-blueprint::before {
+  background:
+    radial-gradient(
+      circle at 15% 20%,
+      rgba(99, 102, 241, 0.11),
+      transparent 28%
+    ),
+    radial-gradient(
+      circle at 85% 75%,
+      rgba(168, 85, 247, 0.08),
+      transparent 30%
+    );
+}
+
+/* Better image rendering on animated cards */
+.about-profile-image {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
+/* Reduce motion for users who explicitly request it */
+@media (prefers-reduced-motion: reduce) {
+  .about-profile-image {
+    transition: none !important;
+  }
+}

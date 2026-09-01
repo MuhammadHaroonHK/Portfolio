@@ -92,7 +92,7 @@ const Home = () => {
       >
         {/* 3D Laptop Section - Reduced wrapper height & added negative margin to pull bottom text up */}
         <div className="order-first lg:order-last lg:col-span-5 relative flex items-center justify-center overflow-visible w-full -mb-10 sm:-mb-14 lg:mb-0">
-          <div className="w-full h-[220px] sm:h-[300px] md:h-[360px] lg:h-[520px] xl:h-[580px] relative overflow-visible">
+          <div className="w-full h-[320px] sm:h-[380px] md:h-[400px] lg:h-[520px] xl:h-[580px] relative overflow-visible">
             <Interactive3DWorkspace />
           </div>
         </div>

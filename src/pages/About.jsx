@@ -196,17 +196,17 @@ const About = () => {
 
             {/* Quick contact row */}
             <div className="flex flex-wrap items-center gap-4 text-xs text-slate-600 dark:text-slate-400 bg-white/70 dark:bg-slate-900/60 backdrop-blur-md rounded-xl px-4 py-3 border border-slate-200/80 dark:border-slate-800/80 shadow-sm">
-              <div className="flex items-center gap-2">
+              <div className="flex items-center gap-1">
                 <FaEnvelope className="text-indigo-500" />
                 <span className="truncate">haroonhk059@gmail.com</span>
               </div>
               <span className="text-slate-300 dark:text-slate-700">|</span>
-              <div className="flex items-center gap-2">
+              <div className="flex items-center gap-1">
                 <FaPhoneAlt className="text-indigo-500" />
                 <span>+92 312 9386965</span>
               </div>
               <span className="text-slate-300 dark:text-slate-700">|</span>
-              <div className="flex items-center gap-2">
+              <div className="flex items-center gap-1">
                 <FaMapMarkerAlt className="text-indigo-500" />
                 <span>Peshawar, PK</span>
               </div>

@@ -2,13 +2,12 @@ import React, { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import aboutImg from "../assets/images/about.webp";
+import {  FaFigma } from 'react-icons/fa';
+import { SiExpress, SiMongodb, SiNextdotjs, SiTailwindcss, SiPostman, SiVercel } from 'react-icons/si';
 import {
-  FaGraduationCap,
   FaBriefcase,
   FaTerminal,
   FaServer,
-  FaDesktop,
-  FaLayerGroup,
   FaMapMarkerAlt,
   FaEnvelope,
   FaPhoneAlt,
@@ -21,7 +20,7 @@ import {
 } from "react-icons/fa";
 
 /* ============================================================
-   MAIN ABOUT COMPONENT — REDESIGNED WITH ENHANCED BACKGROUND
+   MAIN ABOUT COMPONENT
    ============================================================ */
 
 const About = () => {
@@ -56,32 +55,35 @@ const About = () => {
   ];
 
   // Tech stack data
-  const techStack = {
-    frontend: [
-      { name: "React", icon: FaReact },
-      { name: "Next.js", icon: FaDesktop },
-      { name: "TypeScript", icon: FaCode },
-      { name: "Tailwind", icon: FaLayerGroup },
-    ],
-    backend: [
-      { name: "Node.js", icon: FaNodeJs },
-      { name: "Express", icon: FaServer },
-      { name: "REST API", icon: FaTerminal },
-      { name: "JWT Auth", icon: FaDatabase },
-    ],
-    database: [
-      { name: "MongoDB", icon: FaDatabase },
-      { name: "PostgreSQL", icon: FaDatabase },
-      { name: "Redis", icon: FaDatabase },
-      { name: "Prisma", icon: FaDatabase },
-    ],
-    devops: [
-      { name: "Docker", icon: FaCloud },
-      { name: "AWS", icon: FaCloud },
-      { name: "Git", icon: FaGitAlt },
-      { name: "CI/CD", icon: FaTerminal },
-    ],
-  };
+const techStack = {
+  frontend: [
+    { name: "React", icon: FaReact },
+    { name: "Next.js", icon: SiNextdotjs },
+    { name: "TypeScript", icon: FaCode },
+    { name: "Tailwind CSS", icon: SiTailwindcss },
+  ],
+
+  backend: [
+    { name: "Node.js", icon: FaNodeJs },
+    { name: "Express.js", icon: SiExpress },
+    { name: "REST APIs", icon: FaTerminal },
+    { name: "JWT Auth", icon: FaDatabase },
+  ],
+
+  database: [
+    { name: "MongoDB", icon: SiMongodb },
+    { name: "PostgreSQL", icon: FaDatabase },
+    { name: "Prisma", icon: FaDatabase },
+  ],
+
+  tools: [
+    { name: "Git", icon: FaGitAlt },
+    { name: "GitHub", icon: FaGitAlt },
+    { name: "Postman", icon: SiPostman },
+    { name: "Figma", icon: FaFigma },
+    { name: "Vercel", icon: SiVercel },
+  ],
+};
 
   return (
     <section className="relative py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto overflow-hidden rounded-3xl bg-slate-50/80 dark:bg-slate-950/70 border border-slate-200/80 dark:border-slate-800/80 backdrop-blur-xl shadow-xl my-12">
@@ -96,9 +98,7 @@ const About = () => {
         animate={inView ? "visible" : "hidden"}
         className="relative z-10 space-y-12"
       >
-        {/* =============================================
-                    SECTION HEADER
-                ============================================= */}
+        {/* SECTION HEADER */}
         <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-4 border-b border-slate-200/80 dark:border-slate-800/80 pb-6">
           <div>
             <motion.div
@@ -108,22 +108,16 @@ const About = () => {
               <span className="w-1.5 h-1.5 rounded-full bg-indigo-500 animate-pulse" />
               ABOUT / PROFILE
             </motion.div>
+
             <motion.h2
               variants={itemVariants}
               className="text-3xl sm:text-4xl font-bold tracking-tight text-slate-900 dark:text-white"
             >
               Software Engineer
             </motion.h2>
-            <motion.p
-              variants={itemVariants}
-              className="text-slate-600 dark:text-slate-400 text-sm sm:text-base mt-1 max-w-xl"
-            >
-              Full-stack developer specializing in MERN, scalable APIs, and
-              human-centered interfaces.
-            </motion.p>
           </div>
 
-          {/* Quick stats — clean & meaningful */}
+          {/* Quick stats */}
           <motion.div
             variants={itemVariants}
             className="flex items-center gap-6 text-sm"
@@ -136,7 +130,9 @@ const About = () => {
                 Years Code
               </span>
             </div>
+
             <div className="w-px h-8 bg-slate-200 dark:bg-slate-700" />
+
             <div className="text-center">
               <span className="block text-lg font-bold text-indigo-600 dark:text-indigo-400">
                 MERN
@@ -145,7 +141,9 @@ const About = () => {
                 Core Stack
               </span>
             </div>
+
             <div className="w-px h-8 bg-slate-200 dark:bg-slate-700" />
+
             <div className="text-center">
               <span className="block text-lg font-bold text-indigo-600 dark:text-indigo-400">
                 BS SE
@@ -157,11 +155,9 @@ const About = () => {
           </motion.div>
         </div>
 
-        {/* =============================================
-                    MAIN GRID: Profile + Tabs
-                ============================================= */}
+        {/* MAIN GRID */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
-          {/* LEFT COLUMN: Profile Image + Canvas */}
+          {/* LEFT COLUMN: Profile Image + Contact */}
           <motion.div
             variants={itemVariants}
             className="lg:col-span-5 space-y-5"
@@ -171,13 +167,14 @@ const About = () => {
               <div className="aspect-[4/3] w-full relative">
                 <img
                   src={aboutImg}
-                  alt="Muhammad Haroon — Software Engineer"
+                  alt="Muhammad Haroon, Software Engineer"
                   className="w-full h-full object-cover object-center"
                 />
+
                 {/* Subtle gradient overlay */}
                 <div className="absolute inset-0 bg-gradient-to-t from-slate-950/70 via-slate-950/10 to-transparent" />
 
-                {/* Info badge — clean and minimal */}
+                {/* Info badge */}
                 <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between">
                   <div className="flex items-center gap-2 bg-slate-900/70 backdrop-blur-sm px-3 py-1.5 rounded-lg border border-slate-700/60">
                     <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
@@ -185,6 +182,7 @@ const About = () => {
                       ACTIVE
                     </span>
                   </div>
+
                   <div className="bg-indigo-600/80 backdrop-blur-sm px-3 py-1.5 rounded-lg border border-indigo-400/30">
                     <span className="text-[10px] font-mono text-white">
                       MERN · FULL-STACK
@@ -200,15 +198,19 @@ const About = () => {
                 <FaEnvelope className="text-indigo-500" />
                 <span className="truncate">haroonhk059@gmail.com</span>
               </div>
+
               <span className="text-slate-300 dark:text-slate-700">|</span>
+
               <div className="flex items-center gap-1">
                 <FaPhoneAlt className="text-indigo-500" />
                 <span>+92 312 9386965</span>
               </div>
+
               <span className="text-slate-300 dark:text-slate-700">|</span>
+
               <div className="flex items-center gap-1">
                 <FaMapMarkerAlt className="text-indigo-500" />
-                <span>Peshawar, PK</span>
+                <span>Islamabad, PK</span>
               </div>
             </div>
           </motion.div>
@@ -223,6 +225,7 @@ const About = () => {
               {tabs.map((tab) => {
                 const Icon = tab.icon;
                 const isActive = activeTab === tab.id;
+
                 return (
                   <button
                     key={tab.id}
@@ -234,11 +237,7 @@ const About = () => {
                     }`}
                   >
                     <Icon
-                      className={
-                        isActive
-                          ? "text-white"
-                          : "text-slate-400"
-                      }
+                      className={isActive ? "text-white" : "text-slate-400"}
                     />
                     {tab.label}
                   </button>
@@ -249,7 +248,7 @@ const About = () => {
             {/* Tab Panels */}
             <div className="bg-white/70 dark:bg-slate-900/60 backdrop-blur-md rounded-2xl border border-slate-200/80 dark:border-slate-800/80 p-6 sm:p-8 min-h-[340px] shadow-sm">
               <AnimatePresence mode="wait">
-                {/* ——— OVERVIEW ——— */}
+                {/* OVERVIEW */}
                 {activeTab === "overview" && (
                   <motion.div
                     key="overview"
@@ -264,35 +263,35 @@ const About = () => {
                       <strong className="text-indigo-600 dark:text-indigo-400 font-semibold">
                         Software Engineer
                       </strong>{" "}
-                      with a Bachelor's in Software Engineering from{" "}
+                      with a Bachelor's degree in Software Engineering from{" "}
                       <span className="text-slate-900 dark:text-white font-medium">
                         City University, Peshawar
                       </span>
-                      . I build production-grade web applications with a focus
-                      on clean architecture, maintainable code, and smooth user
-                      experiences.
+                      . I enjoy building web applications that are simple to
+                      use, reliable, and easy to maintain.
                     </p>
+
                     <p>
-                      My core stack is{" "}
+                      I mainly work with the{" "}
                       <span className="font-mono text-xs px-2 py-0.5 rounded bg-indigo-50 dark:bg-indigo-950/60 border border-indigo-200/60 dark:border-indigo-800/40 text-indigo-600 dark:text-indigo-400">
                         MERN
                       </span>{" "}
-                      — MongoDB, Express, React, Node.js — supplemented with
-                      Next.js, TypeScript, and modern DevOps practices. I design
-                      systems that are performant, secure, and scalable from the
-                      ground up.
+                      stack, using MongoDB, Express.js, React, and Node.js. I
+                      also work with Next.js, TypeScript, PostgreSQL, Prisma,
+                      and modern development tools.
                     </p>
+
                     <p>
-                      Beyond code, I care about architecture decisions,
-                      developer experience, and bridging the gap between
-                      technical constraints and business goals. I believe great
-                      software is built with empathy — for both the user and the
-                      team.
+                      I have hands-on experience working on real projects,
+                      fixing existing issues, adding new features, building
+                      APIs, and deploying applications. I like learning new
+                      technologies and improving my skills by working on
+                      practical projects.
                     </p>
                   </motion.div>
                 )}
 
-                {/* ——— EXPERIENCE ——— */}
+                {/* EXPERIENCE */}
                 {activeTab === "experience" && (
                   <motion.div
                     key="experience"
@@ -307,32 +306,38 @@ const About = () => {
                       {/* Item 1 */}
                       <div>
                         <div className="absolute -left-[9px] top-1.5 w-3.5 h-3.5 rounded-full bg-indigo-500 border-2 border-white dark:border-slate-900 shadow-sm" />
+
                         <div className="text-[10px] font-mono text-indigo-500 font-semibold uppercase tracking-wide">
-                          2025 – Present
+                          2025 - Present
                         </div>
+
                         <h4 className="text-sm font-bold text-slate-900 dark:text-white mt-0.5">
-                          Full-Stack Development
+                          Software Engineer
                         </h4>
+
                         <p className="text-xs text-slate-600 dark:text-slate-400 mt-0.5">
-                          Building custom MERN solutions, dashboards, and
-                          microservices. Focus on performance, security, and
-                          maintainable code.
+                          Working on full-stack web applications, building
+                          features, fixing issues, and improving existing
+                          projects using modern web technologies.
                         </p>
                       </div>
 
                       {/* Item 2 */}
                       <div>
                         <div className="absolute -left-[9px] top-1.5 w-3.5 h-3.5 rounded-full bg-indigo-500/60 border-2 border-white dark:border-slate-900 shadow-sm" />
+
                         <div className="text-[10px] font-mono text-indigo-500 font-semibold uppercase tracking-wide">
-                          Jun 2025 – Aug 2025
+                          Jun 2025 - Aug 2025
                         </div>
+
                         <h4 className="text-sm font-bold text-slate-900 dark:text-white mt-0.5">
-                          MERN Stack Intern — Logic Gigs Pvt Ltd
+                          MERN Stack Intern at Logic Gigs Pvt Ltd
                         </h4>
+
                         <p className="text-xs text-slate-600 dark:text-slate-400 mt-0.5">
-                          Commercial experience building SPAs, integrating
-                          secure authentication, and deploying on VPS
-                          environments.
+                          Worked on a real MERN project, fixed frontend and
+                          backend issues, added new features, and deployed the
+                          application on a Hostinger VPS.
                         </p>
                       </div>
 
@@ -340,21 +345,22 @@ const About = () => {
                       <div>
                         <div className="absolute -left-[9px] top-1.5 w-3.5 h-3.5 rounded-full bg-indigo-500/30 border-2 border-white dark:border-slate-900 shadow-sm" />
                         <div className="text-[10px] font-mono text-indigo-500 font-semibold uppercase tracking-wide">
-                          Graduated 2025
+                          Graduated 2026
                         </div>
                         <h4 className="text-sm font-bold text-slate-900 dark:text-white mt-0.5">
                           BS Software Engineering
                         </h4>
                         <p className="text-xs text-slate-600 dark:text-slate-400 mt-0.5">
-                          City University of Science & IT, Peshawar. Specialized
-                          in Software Architecture, Web Engineering, and Agile.
+                          City University of Science & IT, Peshawar. Studied
+                          software development, web engineering, databases,
+                          software architecture, and related subjects.
                         </p>
                       </div>
                     </div>
                   </motion.div>
                 )}
 
-                {/* ——— TECH STACK ——— */}
+                {/* TECH STACK */}
                 {activeTab === "stack" && (
                   <motion.div
                     key="stack"

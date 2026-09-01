@@ -174,7 +174,7 @@ function useProceduralCodeTexture() {
     ctx.rotate(Math.PI / 2);
 
     // Background
-    ctx.fillStyle = "#020617";
+    ctx.fillStyle = "#0f172a";
     ctx.fillRect(0, 0, 1280, 800);
 
     // Header

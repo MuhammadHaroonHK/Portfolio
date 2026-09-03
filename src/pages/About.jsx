@@ -86,7 +86,7 @@ const techStack = {
 };
 
   return (
-    <section className="relative py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto overflow-hidden rounded-3xl bg-slate-50/80 dark:bg-slate-950/70 border border-slate-200/80 dark:border-slate-800/80 backdrop-blur-xl shadow-xl my-12">
+    <section className="relative py-4 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto overflow-hidden rounded-3xl bg-slate-50/80 dark:bg-slate-950/70 border border-slate-200/80 dark:border-slate-800/80 backdrop-blur-xl shadow-xl my-12">
       {/* Decorative background visual accents */}
       <div className="absolute -top-32 -left-32 w-96 h-96 bg-indigo-500/10 dark:bg-indigo-600/15 rounded-full blur-3xl pointer-events-none" />
       <div className="absolute -bottom-32 -right-32 w-96 h-96 bg-blue-500/10 dark:bg-purple-600/15 rounded-full blur-3xl pointer-events-none" />
@@ -101,13 +101,7 @@ const techStack = {
         {/* SECTION HEADER */}
         <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-4 border-b border-slate-200/80 dark:border-slate-800/80 pb-6">
           <div>
-            <motion.div
-              variants={itemVariants}
-              className="inline-flex items-center gap-2 text-xs font-mono text-indigo-600 dark:text-indigo-400 mb-2 px-2.5 py-1 rounded-full bg-indigo-50 dark:bg-indigo-950/50 border border-indigo-200 dark:border-indigo-800/50"
-            >
-              <span className="w-1.5 h-1.5 rounded-full bg-indigo-500 animate-pulse" />
-              ABOUT / PROFILE
-            </motion.div>
+
 
             <motion.h2
               variants={itemVariants}
@@ -168,27 +162,11 @@ const techStack = {
                 <img
                   src={aboutImg}
                   alt="Muhammad Haroon, Software Engineer"
-                  className="w-full h-full object-cover object-center"
+                  className="w-full h-full object-contain object-center"
                 />
 
                 {/* Subtle gradient overlay */}
                 <div className="absolute inset-0 bg-gradient-to-t from-slate-950/70 via-slate-950/10 to-transparent" />
-
-                {/* Info badge */}
-                <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between">
-                  <div className="flex items-center gap-2 bg-slate-900/70 backdrop-blur-sm px-3 py-1.5 rounded-lg border border-slate-700/60">
-                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
-                    <span className="text-[10px] font-mono text-white/80">
-                      ACTIVE
-                    </span>
-                  </div>
-
-                  <div className="bg-indigo-600/80 backdrop-blur-sm px-3 py-1.5 rounded-lg border border-indigo-400/30">
-                    <span className="text-[10px] font-mono text-white">
-                      MERN · FULL-STACK
-                    </span>
-                  </div>
-                </div>
               </div>
             </div>
 
@@ -210,7 +188,7 @@ const techStack = {
 
               <div className="flex items-center gap-1">
                 <FaMapMarkerAlt className="text-indigo-500" />
-                <span>Islamabad, PK</span>
+                <span>Peshawar, PK</span>
               </div>
             </div>
           </motion.div>
@@ -308,7 +286,7 @@ const techStack = {
                         <div className="absolute -left-[9px] top-1.5 w-3.5 h-3.5 rounded-full bg-indigo-500 border-2 border-white dark:border-slate-900 shadow-sm" />
 
                         <div className="text-[10px] font-mono text-indigo-500 font-semibold uppercase tracking-wide">
-                          2025 - Present
+                          2023 - Present
                         </div>
 
                         <h4 className="text-sm font-bold text-slate-900 dark:text-white mt-0.5">

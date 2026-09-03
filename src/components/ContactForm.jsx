@@ -97,7 +97,7 @@ const ContactForm = () => {
         
         {submitStatus === 'error' && (
           <div className="mt-4 p-3 bg-red-100 dark:bg-red-900 text-red-700 dark:text-red-200 rounded-lg">
-            Sorry, this service is not available.
+            Sorry, this service is currently not available. Please contact on provided detials.
           </div>
         )}
       </form>

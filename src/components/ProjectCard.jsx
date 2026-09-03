@@ -1,8 +1,8 @@
-import React from 'react';
-import { motion } from 'framer-motion';
-import { FaExternalLinkAlt } from 'react-icons/fa';
+import React from "react";
+import { motion } from "framer-motion";
+import { FaExternalLinkAlt } from "react-icons/fa";
 
-const clsx = (...args) => args.filter(Boolean).join(' ');
+const clsx = (...args) => args.filter(Boolean).join(" ");
 
 const ProjectCard = ({ project, index, inView }) => {
   const [mousePos, setMousePos] = React.useState({ x: 0, y: 0 });
@@ -14,7 +14,7 @@ const ProjectCard = ({ project, index, inView }) => {
     const rect = containerRef.current.getBoundingClientRect();
     setMousePos({
       x: e.clientX - rect.left,
-      y: e.clientY - rect.top
+      y: e.clientY - rect.top,
     });
   };
 
@@ -31,17 +31,22 @@ const ProjectCard = ({ project, index, inView }) => {
         ref={containerRef}
         className={clsx(
           "relative rounded-lg overflow-hidden p-[3px] transition-all duration-300",
-          "sm:hover:shadow-lg shadow-md"
+          "sm:hover:shadow-lg shadow-md",
         )}
         style={{
-          background: isHovered
-            ? `radial-gradient(350px circle at ${mousePos.x}px ${mousePos.y}px, #9E7AFF, #38bdf8, #FF5C5C, #FE8BBB, transparent 80%)`
-            : `sm:rgba(255, 255, 255, 0.05) ${mobileGradient}`,
-          // Apply mobile gradient by default, desktop style only on sm+
-          background: window.innerWidth < 640 ? mobileGradient : 
-            (isHovered 
-              ? `radial-gradient(350px circle at ${mousePos.x}px ${mousePos.y}px, #9E7AFF, #38bdf8, #FF5C5C, #FE8BBB, transparent 80%)`
-              : 'rgba(255, 255, 255, 0.05)')
+          background:
+            window.innerWidth < 640
+              ? mobileGradient
+              : isHovered
+                ? `radial-gradient(
+          350px circle at ${mousePos.x}px ${mousePos.y}px,
+          #9E7AFF,
+          #38bdf8,
+          #FF5C5C,
+          #FE8BBB,
+          transparent 80%
+        )`
+                : "rgba(255, 255, 255, 0.05)",
         }}
         onMouseMove={handleMouseMove}
         onMouseEnter={() => setIsHovered(true)}

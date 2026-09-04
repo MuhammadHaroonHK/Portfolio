@@ -1,8 +1,7 @@
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
-import { useEffect, useState } from "react";
+import { useEffect, useState, lazy, Suspense } from "react";
 import profile from "../assets/images/profile.webp";
-import Interactive3DWorkspace from "../components/Interactive3DWorkspace";
 import ParticleBackground from "../components/ParticleBackground";
 import {
   FaExternalLinkAlt,
@@ -13,13 +12,25 @@ import {
   FaCode,
 } from "react-icons/fa";
 
+// Lazy load 3D canvas so it doesn't execute during initial paint
+const Interactive3DWorkspace = lazy(
+  () => import("../components/Interactive3DWorkspace"),
+);
+
 const Home = () => {
   const [ref, inView] = useInView({
     triggerOnce: true,
     threshold: 0.1,
   });
 
-  // Dynamic Typing State
+  const [mount3D, setMount3D] = useState(false);
+
+  // Defer 3D canvas initialization until after initial page paint
+  useEffect(() => {
+    const timer = setTimeout(() => setMount3D(true), 300);
+    return () => clearTimeout(timer);
+  }, []);
+
   const [currentRole, setCurrentRole] = useState(0);
   const [displayText, setDisplayText] = useState("");
   const [isDeleting, setIsDeleting] = useState(false);
@@ -80,7 +91,6 @@ const Home = () => {
 
   return (
     <div className="min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 pt-20 sm:pt-28 pb-12 sm:pb-16 bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 relative overflow-hidden transition-colors duration-300">
-      {/* Interactive Dot & Mesh Canvas Background */}
       <ParticleBackground />
 
       <motion.div
@@ -90,14 +100,24 @@ const Home = () => {
         initial="hidden"
         animate={inView ? "visible" : "hidden"}
       >
-        {/* 3D Laptop Section - Reduced wrapper height & added negative margin to pull bottom text up */}
+        {/* Deferred 3D Laptop Canvas Container */}
         <div className="order-first lg:order-last lg:col-span-5 relative flex items-center justify-center overflow-visible w-full -mb-10 sm:-mb-14 lg:mb-0">
           <div className="w-full h-[320px] sm:h-[380px] md:h-[400px] lg:h-[520px] xl:h-[580px] relative overflow-visible">
-            <Interactive3DWorkspace />
+            {mount3D ? (
+              <Suspense
+                fallback={
+                  <div className="w-full h-full animate-pulse bg-slate-200/20 dark:bg-slate-800/20 rounded-2xl" />
+                }
+              >
+                <Interactive3DWorkspace />
+              </Suspense>
+            ) : (
+              <div className="w-full h-full" />
+            )}
           </div>
         </div>
 
-        {/* Content & Action Buttons Section */}
+        {/* Content & Action Buttons */}
         <div className="order-last lg:order-first lg:col-span-7 text-center lg:text-left">
           <motion.h1
             variants={itemVariants}

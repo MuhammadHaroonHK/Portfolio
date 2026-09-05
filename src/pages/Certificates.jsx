@@ -11,50 +11,68 @@ import node from "../assets/images/node.webp";
 import network from "../assets/images/network.webp";
 import skillathon from "../assets/images/skillathon.webp";
 import synergy from "../assets/images/synergy.webp";
+import summerUpskill from "../assets/images/Summer Upskill.webp";
+import Brainstorming from "../assets/images/brainstorming & Planing.webp";
+import Fundamentals from "../assets/images/AI fundamentals.webp";
 
 const certificates = [
   {
-    id: 8,
+    id: 1,
     title: "Skillaton Participation Certification",
     image: skillathon,
   },
   {
-    id: 9,
+    id: 2,
+    title: "Skillaton Participation Certification",
+    image: summerUpskill,
+  },
+  {
+    id: 3,
     title: "Synergy Fest 2026",
     image: synergy,
   },
   {
-    id: 1,
+    id: 4,
     title: "React Certification",
     image: react,
   },
   {
-    id: 2,
+    id: 5,
     title: "Front - End Certification",
     image: front,
   },
   {
-    id: 3,
+    id: 6,
     title: "MongoDb & NodeJs Certification",
     image: database,
   },
   {
-    id: 4,
+    id: 7,
     title: "JavaScript Certification",
     image: javascript_1,
   },
   {
-    id: 5,
+    id: 8,
     title: "NodeJs & ExpressJs Certification",
     image: node,
   },
   {
-    id: 6,
+    id: 9,
+    title: "JavaScript Certification",
+    image: Fundamentals,
+  },
+  {
+    id: 10,
+    title: "JavaScript Certification",
+    image: Brainstorming,
+  },
+  {
+    id: 11,
     title: "JavaScript Certification",
     image: javascript,
   },
   {
-    id: 7,
+    id: 12,
     title: "Networking Certification",
     image: network,
   },

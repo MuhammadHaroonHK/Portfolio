@@ -188,7 +188,7 @@ const techStack = {
 
               <div className="flex items-center gap-1">
                 <FaMapMarkerAlt className="text-indigo-500" />
-                <span>Peshawar, PK</span>
+                <span>Islamabad, PK</span>
               </div>
             </div>
           </motion.div>

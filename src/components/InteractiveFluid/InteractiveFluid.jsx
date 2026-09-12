@@ -37,10 +37,10 @@ export default function InteractiveFluid() {
   }, []);
 
   return (
-    <div className="fixed inset-0 w-full h-full overflow-hidden z-0">
+    <div className="fixed inset-0 w-full h-full overflow-hidden z-0 pointer-events-none">
       <canvas
         ref={canvasRef}
-        className="block w-full h-full touch-none pointer-events-auto"
+        className="block w-full h-full touch-none pointer-events-none"
       />
     </div>
   );

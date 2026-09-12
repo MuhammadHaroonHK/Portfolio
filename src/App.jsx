@@ -100,7 +100,10 @@ function App() {
 
       <main className="relative z-10">
         {/* Home Section (Statically Loaded for Immediate LCP) */}
-        <section id="home" className="relative overflow-hidden bg-mesh-pattern">
+        <section
+  id="home"
+  className="relative overflow-hidden"
+>
           <Home />
         </section>
 

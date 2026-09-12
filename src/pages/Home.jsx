@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import { useEffect, useState, lazy, Suspense } from "react";
 import profile from "../assets/images/profile.webp";
-import ParticleBackground from "../components/ParticleBackground";
+import InteractiveFluid from "../components/InteractiveFluid/InteractiveFluid";
 import {
   FaExternalLinkAlt,
   FaArrowRight,
@@ -91,7 +91,7 @@ const Home = () => {
 
   return (
     <div className="min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 pt-20 sm:pt-28 pb-12 sm:pb-16 bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 relative overflow-hidden transition-colors duration-300">
-      <ParticleBackground />
+      <InteractiveFluid />
 
       <motion.div
         ref={ref}

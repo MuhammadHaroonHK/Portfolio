@@ -3,23 +3,34 @@ import react from "@vitejs/plugin-react";
 import { wgslVitePlugin } from "@vgpu/wgsl/loader-vite";
 
 export default defineConfig({
-  plugins: [react(),
-    wgslVitePlugin(),
-  ],
+  plugins: [react(), wgslVitePlugin()],
+
   assetsInclude: ["**/*.PNG"],
   build: {
-    rollupOptions: {
+    rolldownOptions: {
       output: {
-        manualChunks: {
-          // Separate 3D engine from main bundle
-          three: ["three", "@react-three/fiber", "@react-three/drei"],
-          // Separate animation libraries
-          animations: ["framer-motion"],
-          // Separate UI icons
-          icons: ["react-icons"],
+        codeSplitting: {
+          groups: [
+            {
+              name: "three",
+              test: /node_modules[\\/](three|@react-three[\\/]fiber|@react-three[\\/]drei)/,
+              priority: 30,
+            },
+            {
+              name: "animations",
+              test: /node_modules[\\/]framer-motion/,
+              priority: 20,
+            },
+            {
+              name: "icons",
+              test: /node_modules[\\/]react-icons/,
+              priority: 10,
+            },
+          ],
         },
       },
     },
+
     chunkSizeWarningLimit: 1000,
   },
 });

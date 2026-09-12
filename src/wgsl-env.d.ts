@@ -1,4 +1,1 @@
-declare module "*.wgsl" {
-  const shader: string;
-  export default shader;
-}
+/// <reference types="@vgpu/wgsl/wgsl-types" />

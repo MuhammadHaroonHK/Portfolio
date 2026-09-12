@@ -7,8 +7,11 @@ struct DisplayConfig {
 
 const DYE_SIZE = vec2u(512, 288);
 
-@group(0) @binding(0) var<uniform> config: DisplayConfig;
-@group(0) @binding(1) var<storage, read> dye: array<vec4f>;
+@group(0) @binding(0)
+var<uniform> config: DisplayConfig;
+
+@group(0) @binding(1)
+var<storage, read> dye: array<vec4f>;
 
 fn sample_dye(p: vec2f) -> vec3f {
   let grid = clamp(
@@ -41,16 +44,14 @@ fn fragment_main(
 ) -> @location(0) vec4f {
   var uv = position.xy / config.output_size;
 
-  // WebGPU fragment coordinates start at the top.
-  // The solver's +Y points up.
+  // Keep the existing orientation.
   uv.y = 1.0 - uv.y;
 
   let density = sample_dye(uv);
 
-  // Keep the same colorful fluid.
+  // Keep the original fluid calculation.
   let color = 1.0 - exp(-density * 1.35);
 
-  // Keep the existing vignette effect.
   let vignette =
     0.68 +
     0.32 *
@@ -61,6 +62,67 @@ fn fragment_main(
       ),
       1.5
     );
+
+  // ------------------------------------------------------------
+  // Detect theme from the background itself.
+  //
+  // Dark background starts around 0.043.
+  // Light background starts around 0.965.
+  // ------------------------------------------------------------
+  let is_light_mode = config.background_color.r > 0.5;
+
+  if (is_light_mode) {
+    // ----------------------------------------------------------
+    // LIGHT MODE
+    //
+    // Do NOT add the fluid directly to the light background.
+    // That would clip the result toward white.
+    //
+    // Instead, use the dye as a blend mask so the actual
+    // colorful fluid remains visible.
+    // ----------------------------------------------------------
+
+    // Make the fluid more vivid on a bright background.
+    let vivid = pow(
+      clamp(color, vec3f(0.0), vec3f(1.0)),
+      vec3f(0.62)
+    );
+
+    // Slight saturation/contrast boost.
+    let vivid_color = clamp(
+      vec3f(
+        vivid.r * 0.95,
+        vivid.g * 0.78,
+        vivid.b * 1.10
+      ),
+      vec3f(0.0),
+      vec3f(1.0)
+    );
+
+    // Strong enough to remain visible in light mode.
+    let strength = clamp(
+      dot(vivid_color, vec3f(0.299, 0.587, 0.114)) * 1.35,
+      0.0,
+      0.82
+    );
+
+    let fluid_mask = strength * vignette;
+
+    // Blend colorful fluid over the light background.
+    let final_color = mix(
+      config.background_color,
+      vivid_color,
+      fluid_mask
+    );
+
+    return vec4f(final_color, 1.0);
+  }
+
+  // ------------------------------------------------------------
+  // DARK MODE
+  //
+  // Keep the existing appearance unchanged.
+  // ------------------------------------------------------------
 
   return vec4f(
     (config.background_color + color) * vignette,

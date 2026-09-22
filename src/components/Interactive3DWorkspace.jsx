@@ -13,10 +13,11 @@ const TERMINAL_LINES = [
   { type: "json", text: '  "name": "Muhammad Haroon",' },
   { type: "json", text: '  "stack": "MERN",' },
   { type: "json", text: '  "available": true' },
+  { type: "json", text: "}" },
 ];
 
-const MONO_FONT = '22px "Fira Code", Consolas, monospace';
-const MONO_BOLD = 'bold 22px "Fira Code", Consolas, monospace';
+const MONO_FONT = '32px "Fira Code", Consolas, monospace';
+const MONO_BOLD = 'bold 32px "Fira Code", Consolas, monospace';
 
 function drawTerminalLine(ctx, line, x, y) {
   const text = line.text || "";
@@ -26,7 +27,7 @@ function drawTerminalLine(ctx, line, x, y) {
     ctx.fillStyle = "#22c55e";
     ctx.fillText("haroon@portfolio:~$", x, y);
     ctx.fillStyle = "#e2e8f0";
-    ctx.fillText(` ${text}`, x + 240, y);
+    ctx.fillText(` ${text}`, x + 320, y);
     return;
   }
 
@@ -119,15 +120,16 @@ function useProceduralCodeTexture() {
 
     if (!needsRedraw) return;
 
-    ctx.save();
-    ctx.translate(canvas.width, 0);
-    ctx.rotate(Math.PI / 2);
-
     ctx.fillStyle = "#0f172a";
-    ctx.fillRect(0, 0, 1024, 640);
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+    ctx.save();
+    // Offset and scale to fit inside the physical screen's UV bounds
+    ctx.translate(380, 40);
+    ctx.scale(0.65, 0.65);
 
     ctx.fillStyle = "#111827";
-    ctx.fillRect(0, 0, 1024, 50);
+    ctx.fillRect(-500, -500, 2000, 550); // Extended top bar to cover edges
 
     const buttons = [
       { x: 25, color: "#ef4444" },
@@ -143,7 +145,7 @@ function useProceduralCodeTexture() {
 
     const startX = 35;
     const startY = 85;
-    const lineHeight = 32;
+    const lineHeight = 40;
 
     for (let i = 0; i < s.lineIndex; i++) {
       drawTerminalLine(ctx, TERMINAL_LINES[i], startX, startY + i * lineHeight);

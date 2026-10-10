@@ -1,4 +1,4 @@
-import React, { Suspense, useRef, useEffect, useMemo, memo } from "react";
+import React, { Suspense, useRef, useEffect, useMemo, memo, useState } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { OrbitControls, useGLTF } from "@react-three/drei";
 import * as THREE from "three";
@@ -54,7 +54,7 @@ function drawTerminalLine(ctx, line, x, y) {
   ctx.fillText(text, x, y);
 }
 
-function useProceduralCodeTexture() {
+function useProceduralCodeTexture(isVisible) {
   const canvas = useMemo(() => {
     const c = document.createElement("canvas");
     c.width = 800;
@@ -78,12 +78,24 @@ function useProceduralCodeTexture() {
     lastBlink: 0,
     nextAction: 0,
     finishedAt: null,
+    prevVisible: isVisible,
   });
 
   useFrame((state) => {
     const now = state.clock.getElapsedTime() * 1000;
-    const ctx = canvas.getContext("2d");
     const s = stateRef.current;
+
+    // Instantly resync timers when returning to view so typing resumes without delay
+    if (!s.prevVisible && isVisible) {
+      s.nextAction = now;
+      s.lastBlink = now;
+    }
+    s.prevVisible = isVisible;
+
+    // Skip animation calculations entirely if component is off-screen
+    if (!isVisible) return;
+
+    const ctx = canvas.getContext("2d");
     let needsRedraw = false;
 
     if (now - s.lastBlink >= 600) {
@@ -124,12 +136,11 @@ function useProceduralCodeTexture() {
     ctx.fillRect(0, 0, canvas.width, canvas.height);
 
     ctx.save();
-    // Offset and scale to fit inside the physical screen's UV bounds
     ctx.translate(380, 40);
     ctx.scale(0.65, 0.65);
 
     ctx.fillStyle = "#111827";
-    ctx.fillRect(-500, -500, 2000, 550); // Extended top bar to cover edges
+    ctx.fillRect(-500, -500, 2000, 550);
 
     const buttons = [
       { x: 25, color: "#ef4444" },
@@ -178,10 +189,10 @@ function useProceduralCodeTexture() {
   return texture;
 }
 
-function LaptopModel(props) {
+function LaptopModel({ isVisible, ...props }) {
   const groupRef = useRef();
   const { scene } = useGLTF("/models/laptop.glb");
-  const terminalTexture = useProceduralCodeTexture();
+  const terminalTexture = useProceduralCodeTexture(isVisible);
 
   useEffect(() => {
     if (!scene) return;
@@ -211,7 +222,7 @@ function LaptopModel(props) {
   }, [scene, terminalTexture]);
 
   useFrame((state) => {
-    if (!groupRef.current) return;
+    if (!isVisible || !groupRef.current) return;
     const t = state.clock.getElapsedTime();
     groupRef.current.position.y = -0.2 + Math.sin(t * 0.8) * 0.02;
     groupRef.current.rotation.y = Math.sin(t * 0.4) * 0.03;
@@ -227,11 +238,31 @@ function LaptopModel(props) {
 useGLTF.preload("/models/laptop.glb");
 
 export default memo(function Interactive3DWorkspace() {
+  const containerRef = useRef(null);
+  const [isVisible, setIsVisible] = useState(true);
+
+  // Intersection Observer to track if the 3D canvas is visible on screen
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsVisible(entry.isIntersecting);
+      },
+      { threshold: 0.1 }
+    );
+
+    if (containerRef.current) {
+      observer.observe(containerRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, []);
+
   return (
-    <div className="w-full h-full relative overflow-hidden flex items-center justify-center">
+    <div ref={containerRef} className="w-full h-full relative overflow-hidden flex items-center justify-center">
       <Canvas
         camera={{ position: [0, 0.8, 9.5], fov: 38, near: 0.1, far: 50 }}
         dpr={[1, 1.5]}
+        frameloop={isVisible ? "always" : "demand"}
         gl={{
           powerPreference: "high-performance",
           antialias: false,
@@ -243,7 +274,7 @@ export default memo(function Interactive3DWorkspace() {
         <directionalLight position={[-4, -3, -2]} intensity={0.4} />
 
         <Suspense fallback={null}>
-          <LaptopModel />
+          <LaptopModel isVisible={isVisible} />
         </Suspense>
 
         <OrbitControls

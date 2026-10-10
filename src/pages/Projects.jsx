@@ -5,8 +5,8 @@ import rabit from "../assets/images/rabit.webp";
 import green from "../assets/images/green.webp";
 import adeverywhere from "../assets/images/AdEverywhere.webp";
 import beautiLink from "../assets/images/beautilink.webp";
-import boxSurpise from "../assets/images/boxsurprise.webp";
-import khyberSchool from "../assets/images/khyber.webp"
+import software from "../assets/images/software.webp";
+import khyberSchool from "../assets/images/khyber.webp";
 
 const Projects = () => {
   const [ref, inView] = useInView({
@@ -15,6 +15,21 @@ const Projects = () => {
   });
 
   const projects = [
+    {
+      title: "Software House CRM",
+      description:
+        "An enterprise CRM system for managing clients, projects, tasks, invoices, and payments with role-based access control.",
+      technologies: [
+        "Next.js",
+        "TypeScript",
+        "TanStack Query",
+        "Node.js",
+        "Prisma ORM",
+        "PostgreSQL",
+      ],
+      image: software,
+      link: "https://software-house-ten.vercel.app/",
+    },
     {
       title: "E-Commerce Website",
       description:
@@ -62,21 +77,6 @@ const Projects = () => {
       ],
       image: beautiLink,
       link: "https://beauti-link.vercel.app/",
-    },
-    {
-      title: "Box Surprise",
-      description:
-        "Box Surprise is an e-commerce platform offering surprise gift boxes with a secure referral and reward system.",
-      technologies: [
-        "ReactJS",
-        "TypeScript",
-        "Redux Toolkit",
-        "Tailwind CSS",
-        "Node.js",
-        "Express.js",
-      ],
-      image: boxSurpise,
-      link: "https://www.boxsurprise.pk/",
     },
     {
       title: "Khyber School & College",

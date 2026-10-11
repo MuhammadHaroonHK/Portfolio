@@ -1,6 +1,7 @@
 import { useState, useEffect, lazy, Suspense } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Navbar from "./components/Navbar";
+import { Mascot } from "page-mascot";
 
 // Keep top-of-fold critical content static for immediate FCP
 import Home from "./pages/Home";
@@ -29,6 +30,51 @@ const SectionFallback = () => (
 function App() {
   const [darkMode, setDarkMode] = useState(getInitialDarkMode);
   const [isLoading, setIsLoading] = useState(true);
+  const [activeSection, setActiveSection] = useState("home");
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const sections = [
+        "home",
+        "about",
+        "skills",
+        "projects",
+        "certificates",
+        "contact",
+      ];
+
+      const center = window.innerHeight / 2;
+      let closestSection = "home";
+      let closestDistance = Infinity;
+
+      sections.forEach((id) => {
+        const section = document.getElementById(id);
+        if (!section) return;
+
+        const rect = section.getBoundingClientRect();
+        const distance =
+          center < rect.top
+            ? rect.top - center
+            : center > rect.bottom
+              ? center - rect.bottom
+              : 0;
+
+        if (distance < closestDistance) {
+          closestDistance = distance;
+          closestSection = id;
+        }
+      });
+
+      setActiveSection(closestSection);
+    };
+
+    handleScroll();
+    window.addEventListener("scroll", handleScroll, { passive: true });
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
 
   /* Theme Sync */
   useEffect(() => {
@@ -75,6 +121,38 @@ function App() {
     <div
       className={`min-h-screen relative font-sans ${darkMode ? "dark" : ""}`}
     >
+      {/* Animated Floating Mascot */}
+      {(() => {
+        const positions = {
+          home: { left: "50%", top: "85%" },
+          about: { left: "92%", top: "85%" },
+          skills: { left: "8%", top: "85%" },
+          projects: { left: "92%", top: "25%" },
+          certificates: { left: "8%", top: "25%" },
+          contact: { left: "50%", top: "85%" },
+        };
+
+        return (
+          <div className="fixed inset-0 z-50 pointer-events-none">
+            <motion.div
+              className="absolute -translate-x-1/2 -translate-y-1/2 pointer-events-auto"
+              initial={false}
+              animate={positions[activeSection]}
+              transition={{
+                type: "spring",
+                stiffness: 65,
+                damping: 18,
+                mass: 0.8,
+              }}
+            >
+              <Mascot
+                directions="/mascots/fox-directions.webp"
+                reactions="/mascots/fox-reactions.webp"
+              />
+            </motion.div>
+          </div>
+        );
+      })()}
       {/* Preloader Overlay (Fades out seamlessly without unmounting root UI) */}
       <AnimatePresence>
         {isLoading && (
@@ -100,10 +178,7 @@ function App() {
 
       <main className="relative z-10">
         {/* Home Section (Statically Loaded for Immediate LCP) */}
-        <section
-  id="home"
-  className="relative overflow-hidden"
->
+        <section id="home" className="relative overflow-hidden">
           <Home />
         </section>
 

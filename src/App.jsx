@@ -133,7 +133,7 @@ function App() {
         };
 
         return (
-          <div className="fixed inset-0 z-50 pointer-events-none">
+          <div className="hidden md:block fixed inset-0 z-50 pointer-events-none">
             <motion.div
               className="absolute -translate-x-1/2 -translate-y-1/2 pointer-events-auto"
               initial={false}

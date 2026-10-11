@@ -101,7 +101,7 @@ const Home = () => {
         animate={inView ? "visible" : "hidden"}
       >
         {/* Deferred 3D Laptop Canvas Container */}
-        <div className="order-first lg:order-last lg:col-span-5 relative flex items-center justify-center overflow-visible w-full -mb-10 sm:-mb-14 lg:mb-0">
+        <div className="order-first lg:order-last lg:col-span-5 relative flex items-center justify-center overflow-visible w-full -mb-28 sm:-mb-14 lg:mb-0">
           <div className="w-full h-[320px] sm:h-[380px] md:h-[400px] lg:h-[520px] xl:h-[580px] relative overflow-visible">
             {mount3D ? (
               <Suspense

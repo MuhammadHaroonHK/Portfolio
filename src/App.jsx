@@ -126,7 +126,7 @@ function App() {
         const positions = {
           home: { left: "50%", top: "85%" },
           about: { left: "92%", top: "85%" },
-          skills: { left: "8%", top: "85%" },
+          skills: { left: "8%", top: "25%" },
           projects: { left: "92%", top: "25%" },
           certificates: { left: "8%", top: "25%" },
           contact: { left: "50%", top: "85%" },

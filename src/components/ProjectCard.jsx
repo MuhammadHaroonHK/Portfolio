@@ -23,6 +23,7 @@ const ProjectCard = ({ project, index, inView }) => {
 
   return (
     <motion.div
+      className="h-full flex flex-col"
       initial={{ opacity: 0, y: 20 }}
       animate={inView ? { opacity: 1, y: 0 } : {}}
       transition={{ delay: index * 0.2, duration: 0.5 }}
@@ -30,8 +31,8 @@ const ProjectCard = ({ project, index, inView }) => {
       <div
         ref={containerRef}
         className={clsx(
-          "relative rounded-lg overflow-hidden p-[3px] transition-all duration-300",
-          "sm:hover:shadow-lg shadow-md",
+          "relative rounded-lg overflow-hidden p-[3px] transition-all duration-300 flex flex-col flex-grow",
+          "sm:hover:shadow-lg shadow-md"
         )}
         style={{
           background:
@@ -52,21 +53,28 @@ const ProjectCard = ({ project, index, inView }) => {
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
       >
-        <div className="bg-white dark:bg-gray-700 rounded-lg overflow-hidden transition-shadow duration-300 h-full">
-          <div className="h-48 overflow-hidden">
+        <div className="bg-white dark:bg-gray-700 rounded-lg overflow-hidden transition-shadow duration-300 flex flex-col flex-grow h-full">
+          {/* Project Image */}
+          <div className="h-48 overflow-hidden flex-shrink-0">
             <img
               src={project.image}
               alt={project.title}
               className="w-full h-full object-cover"
             />
           </div>
-          <div className="p-6">
+
+          {/* Content Container */}
+          <div className="p-6 flex flex-col flex-grow">
             <h3 className="text-xl font-bold mb-2 text-gray-800 dark:text-gray-200">
               {project.title}
             </h3>
-            <p className="text-gray-600 dark:text-gray-400 mb-4">
+            
+            {/* Description with flex-grow to push bottom content down */}
+            <p className="text-gray-600 dark:text-gray-400 mb-4 flex-grow">
               {project.description}
             </p>
+
+            {/* Technologies Used */}
             <div className="mb-4">
               <h4 className="font-semibold text-sm mb-2 text-primary-light dark:text-primary-dark">
                 Technologies Used:
@@ -82,14 +90,18 @@ const ProjectCard = ({ project, index, inView }) => {
                 ))}
               </div>
             </div>
-            <a
-              href={project.link}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center px-4 py-2 bg-primary-light dark:bg-primary-dark text-white rounded-lg hover:bg-opacity-90 transition-colors duration-300"
-            >
-              Visit Project <FaExternalLinkAlt className="ml-2" />
-            </a>
+
+            {/* Visit Project Button pushed to bottom via mt-auto */}
+            <div className="mt-auto pt-2">
+              <a
+                href={project.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center px-4 py-2 bg-primary-light dark:bg-primary-dark text-white rounded-lg hover:bg-opacity-90 transition-colors duration-300"
+              >
+                Visit Project <FaExternalLinkAlt className="ml-2" />
+              </a>
+            </div>
           </div>
         </div>
       </div>

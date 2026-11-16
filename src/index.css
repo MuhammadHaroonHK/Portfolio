@@ -53,3 +53,17 @@
   pointer-events: none;
   user-select: none;
 }
+
+@keyframes float-gpu {
+  0%, 100% {
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    transform: translate3d(0, -8px, 0);
+  }
+}
+
+.animate-float-gpu {
+  animation: float-gpu 3.2s ease-in-out infinite;
+  will-change: transform;
+}

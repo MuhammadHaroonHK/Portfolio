@@ -1,7 +1,5 @@
 import { surface, type Gpu, type Surface } from "vgpu";
-
 import { installStirInput } from "./pointer-input";
-
 import {
   createFluid,
   prepareFluid,
@@ -21,7 +19,6 @@ interface RendererOptions {
 
 function fixedStepCount(accumulator: number, elapsed: number) {
   let next = accumulator + Math.min(elapsed, 1 / 30);
-
   let steps = 0;
 
   while (next >= FIXED_STEP && steps < 2) {
@@ -54,7 +51,6 @@ export function createRenderer(options: RendererOptions) {
 
     if (!document.hidden && fluid && input && canvasSurface) {
       const fixed = fixedStepCount(accumulator, (now - previous) / 1000);
-
       accumulator = fixed.accumulator;
 
       for (let i = 0; i < fixed.steps; i++) {
@@ -70,7 +66,6 @@ export function createRenderer(options: RendererOptions) {
 
   function dispose() {
     if (disposed) return;
-
     disposed = true;
 
     if (animationFrame) {
@@ -88,11 +83,9 @@ export function createRenderer(options: RendererOptions) {
 
   const initialize = async () => {
     const { init } = await import("vgpu");
-
     if (disposed) return;
 
     const nextGpu = await init();
-
     if (disposed) {
       nextGpu.dispose();
       return;
@@ -100,21 +93,19 @@ export function createRenderer(options: RendererOptions) {
 
     gpu = nextGpu;
 
+    // Cap DPR to 1.5 to prevent 4x pixel fill-rate lag on high-DPI desktops
     canvasSurface = surface(gpu, options.canvas, {
-      dpr: [1, 2],
+      dpr: [1, 1.5],
     });
 
     fluid = createFluid(gpu);
-
     input = installStirInput(options.canvas);
 
     await prepareFluid(fluid, canvasSurface, darkMode);
-
     if (disposed) return;
 
     canvasSurface.onResize(() => {
       if (disposed || !fluid || !canvasSurface) return;
-
       try {
         resizeFluid(fluid, canvasSurface, darkMode);
       } catch (error) {
@@ -123,7 +114,6 @@ export function createRenderer(options: RendererOptions) {
     });
 
     previous = performance.now();
-
     animationFrame = requestAnimationFrame(tick);
   };
 
@@ -134,7 +124,6 @@ export function createRenderer(options: RendererOptions) {
 
   const setTheme = (nextDarkMode: boolean) => {
     darkMode = nextDarkMode;
-
     if (fluid) {
       setFluidTheme(fluid, darkMode);
     }

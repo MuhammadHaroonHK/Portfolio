@@ -3,28 +3,30 @@ import { motion, AnimatePresence } from "framer-motion";
 import ThemeToggle from "./ThemeToggle";
 import { FaBars, FaTimes } from "react-icons/fa";
 
+const NAV_LINKS = [
+  { name: "Home", path: "#home" },
+  { name: "About", path: "#about" },
+  { name: "Skills", path: "#skills" },
+  { name: "Projects", path: "#projects" },
+  { name: "Certificates", path: "#certificates" },
+  { name: "Contact", path: "#contact" },
+];
+
 const Navbar = ({ darkMode, toggleDarkMode }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 20);
+      const isScrolled = window.scrollY > 20;
+      setScrolled((prev) => (prev !== isScrolled ? isScrolled : prev));
     };
-    window.addEventListener("scroll", handleScroll);
+
+    handleScroll();
+    window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const navLinks = [
-    { name: "Home", path: "#home" },
-    { name: "About", path: "#about" },
-    { name: "Skills", path: "#skills" },
-    { name: "Projects", path: "#projects" },
-    { name: "Certificates", path: "#certificates" },
-    { name: "Contact", path: "#contact" },
-  ];
-
-  // Smooth scroll handler for mobile & desktop fallback
   const handleNavClick = (e, path) => {
     e.preventDefault();
     setMobileMenuOpen(false);
@@ -33,10 +35,9 @@ const Navbar = ({ darkMode, toggleDarkMode }) => {
     const targetElement = document.getElementById(targetId);
 
     if (targetElement) {
-      // Small delay allows mobile menu animation to release layout focus cleanly
       setTimeout(() => {
         targetElement.scrollIntoView({ behavior: "smooth" });
-      }, 100);
+      }, 80);
     }
   };
 
@@ -45,12 +46,11 @@ const Navbar = ({ darkMode, toggleDarkMode }) => {
       <nav
         className={`max-w-7xl mx-auto rounded-2xl transition-all duration-300 ${
           scrolled
-            ? "bg-white/90 dark:bg-slate-900/90 backdrop-blur-md shadow-lg shadow-indigo-500/5 py-3"
-            : "bg-white/70 dark:bg-slate-900/70 backdrop-blur-sm py-4"
+            ? "bg-white/95 dark:bg-slate-900/95 shadow-lg shadow-indigo-500/5 py-3"
+            : "bg-white/80 dark:bg-slate-900/80 py-4"
         }`}
       >
         <div className="px-4 sm:px-6 flex items-center justify-between">
-          {/* Logo / Brand Name */}
           <a
             href="#home"
             onClick={(e) => handleNavClick(e, "#home")}
@@ -62,12 +62,12 @@ const Navbar = ({ darkMode, toggleDarkMode }) => {
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-1">
-            {navLinks.map((link) => (
+            {NAV_LINKS.map((link) => (
               <a
                 key={link.name}
                 href={link.path}
                 onClick={(e) => handleNavClick(e, link.path)}
-                className="px-4 py-2 rounded-xl text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-indigo-600 dark:hover:text-indigo-400 hover:bg-slate-100/50 dark:hover:bg-slate-800/50 transition-all duration-200"
+                className="px-4 py-2 rounded-xl text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-indigo-600 dark:hover:text-indigo-400 hover:bg-slate-100/50 dark:hover:bg-slate-800/50 transition-colors duration-200"
               >
                 {link.name}
               </a>
@@ -86,8 +86,9 @@ const Navbar = ({ darkMode, toggleDarkMode }) => {
             <ThemeToggle darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="p-2.5 rounded-xl text-slate-700 dark:text-slate-200 glass-panel hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
+              className="p-2.5 rounded-xl text-slate-700 dark:text-slate-200 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors"
               aria-label="Toggle Navigation"
+              aria-expanded={mobileMenuOpen}
             >
               {mobileMenuOpen ? (
                 <FaTimes className="h-5 w-5" />
@@ -98,18 +99,18 @@ const Navbar = ({ darkMode, toggleDarkMode }) => {
           </div>
         </div>
 
-        {/* Mobile Navigation Dropdown */}
+        {/* Mobile Navigation Dropdown (GPU opacity + translateY) */}
         <AnimatePresence>
           {mobileMenuOpen && (
             <motion.div
-              initial={{ opacity: 0, height: 0 }}
-              animate={{ opacity: 1, height: "auto" }}
-              exit={{ opacity: 0, height: 0 }}
-              transition={{ duration: 0.3, ease: "easeInOut" }}
-              className="md:hidden overflow-hidden border-t border-slate-200/50 dark:border-slate-800/50 mt-3"
+              initial={{ opacity: 0, y: -8 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -8 }}
+              transition={{ duration: 0.2, ease: "easeOut" }}
+              className="md:hidden border-t border-slate-200/50 dark:border-slate-800/50 mt-3"
             >
               <div className="px-4 pt-3 pb-4 space-y-1">
-                {navLinks.map((link) => (
+                {NAV_LINKS.map((link) => (
                   <a
                     key={link.name}
                     href={link.path}

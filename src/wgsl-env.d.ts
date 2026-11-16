@@ -1,1 +1,6 @@
-/// <reference types="@vgpu/wgsl/wgsl-types" />
+/// <reference types="vite/client" />
+
+declare module "*.wgsl" {
+  const shader: any;
+  export default shader;
+}

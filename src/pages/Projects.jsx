@@ -2,11 +2,11 @@ import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import ProjectCard from "../components/ProjectCard";
 import rabit from "../assets/images/rabit.webp";
-import green from "../assets/images/green.webp";
 import adeverywhere from "../assets/images/AdEverywhere.webp";
 import beautiLink from "../assets/images/beautilink.webp";
 import software from "../assets/images/software.webp";
 import khyberSchool from "../assets/images/khyber.webp";
+import invoice from "../assets/images/invoice-system.webp";
 
 const Projects = () => {
   const [ref, inView] = useInView({
@@ -31,20 +31,12 @@ const Projects = () => {
       link: "https://software-house-ten.vercel.app/",
     },
     {
-      title: "E-Commerce Website",
+      title: "Invoice Management System",
       description:
-        "A full-stack e-commerce platform with product listings, cart functionality, user authentication, and payment processing.",
-      technologies: [
-        "ReactJS",
-        "Redux Toolkit",
-        "Tailwind CSS",
-        "Node.js",
-        "Express.js",
-        "MongoDB",
-        "JWT",
-      ],
-      image: rabit,
-      link: "https://e-commerce-web-3ftx.vercel.app/",
+        "A web application for creating, managing, and tracking invoices with user authentication and data persistence.",
+      technologies: ["ReactJS", "Tailwind CSS", "Node.js", "Express.js", "MongoDB"],
+      image: invoice,
+      link: "https://printfix-client.vercel.app/",
     },
     {
       title: "AdEverywhere",
@@ -79,20 +71,28 @@ const Projects = () => {
       link: "https://beauti-link.vercel.app/",
     },
     {
+      title: "E-Commerce Website",
+      description:
+        "A full-stack e-commerce platform with product listings, cart functionality, user authentication, and payment processing.",
+      technologies: [
+        "ReactJS",
+        "Redux Toolkit",
+        "Tailwind CSS",
+        "Node.js",
+        "Express.js",
+        "MongoDB",
+        "JWT",
+      ],
+      image: rabit,
+      link: "https://e-commerce-web-3ftx.vercel.app/",
+    },
+    {
       title: "Khyber School & College",
       description:
         "A modern school website showcasing academic programs, campus information, admissions, and contact details.",
       technologies: ["ReactJs", "Framer Motion", "Tailwind CSS"],
       image: khyberSchool,
       link: "https://khyber-123.vercel.app/",
-    },
-    {
-      title: "Green House Website",
-      description:
-        "A website for a greenhouse business showcasing their products and services with a modern UI.",
-      technologies: ["ReactJS", "Tailwind CSS", "Redux Toolkit"],
-      image: green,
-      link: "https://shopping-seven-gilt.vercel.app/",
     },
   ];
 
